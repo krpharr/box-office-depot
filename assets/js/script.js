@@ -48,7 +48,7 @@ function getMovie() {
     })
 }
 
-// getMovie();
+getMovie();
 
 
 // Ajax function for Now Playing movies call
@@ -73,4 +73,4 @@ function getBoxOffice() {
     })
 }
 
-// getBoxOffice();
+

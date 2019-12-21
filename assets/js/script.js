@@ -1,14 +1,24 @@
-function queryGeoLocation(){
-    var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=23228&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA";
+function queryGeoLocation(query){
+    // var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=23228&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA";
+    var queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response){
-        console.log(response)
+        // console.log(response);
 
-        let location ={
-            
-        }
+        let results = response;
+        // console.log(response.results[0].formatted_address);
+        // console.log(response.results[0].geometry.location);
+
+        var location = {
+            address: response.results[0].formatted_address,
+            lat: response.results[0].geometry.location.lat,
+            lng: response.results[0].geometry.location.lng
+        };
+        console.log(location)
+
+        localStorage.setItem("bod-zipcodeSearch",JSON.stringify(location));
 
     });
 }
@@ -38,7 +48,7 @@ function getMovie() {
     })
 }
 
-getMovie();
+// getMovie();
 
 
 // Ajax function for Now Playing movies call
@@ -63,4 +73,4 @@ function getBoxOffice() {
     })
 }
 
-getBoxOffice();
+// getBoxOffice();

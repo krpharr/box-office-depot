@@ -5,6 +5,11 @@ function queryGeoLocation(){
         method: "GET"
     }).then(function(response){
         console.log(response)
+
+        let location ={
+            
+        }
+
     });
 }
 

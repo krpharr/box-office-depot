@@ -1,54 +1,80 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+
+    <!-- Materialize CDN Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+
     <title>Place Search Pagination</title>
     <style>
         /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
+        
         #map {
-            height: 100%;
+            height: 50%;
+            width: 100%;
+            margin-top: 16px;
+            margin-left: auto;
+            margin-right: auto;
         }
         /* Optional: Makes the sample page fill the window. */
+        
         html,
         body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-        #right-panel {
+        
+        .container {
+            height: 100%;
+        }
+        
+        #results-panel {
             font-family: 'Roboto', 'sans-serif';
             line-height: 30px;
+            margin-top: 16px;
             padding-left: 10px;
         }
-        #right-panel select,
-        #right-panel input {
+        
+        #results-panel select,
+        #results-panel input {
             font-size: 15px;
         }
-        #right-panel select {
+        
+        #results-panel select {
             width: 100%;
         }
-        #right-panel i {
+        
+        #results-panel i {
             font-size: 12px;
         }
-        #right-panel {
-            font-family: Arial, Helvetica, sans-serif;
-            position: absolute;
+        
+        #results-panel {
+            /* font-family: Arial, Helvetica, sans-serif; */
+            /* position: absolute;
             right: 5px;
             top: 60%;
             margin-top: -195px;
             height: 330px;
-            width: 200px;
+            width: 200px; */
             padding: 5px;
             z-index: 5;
             border: 1px solid #999;
             background: #fff;
         }
+        
         h2 {
             font-size: 22px;
             margin: 0 0 5px 0;
         }
+        
         ul {
             list-style-type: none;
             padding: 0;
@@ -57,6 +83,7 @@
             width: 200px;
             overflow-y: scroll;
         }
+        
         li {
             background-color: #F1F1F1;
             padding: 10px;
@@ -64,9 +91,11 @@
             white-space: nowrap;
             overflow: hidden;
         }
+        
         li:nth-child(odd) {
             background-color: #FCFCFC;
         }
+        
         #more {
             width: 100%;
             margin: 5px 0 0 0;
@@ -77,6 +106,7 @@
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
         var map;
+
         function initMap() {
             // Create the map.
             var pyrmont = {
@@ -110,6 +140,7 @@
                     };
                 });
         }
+
         function createMarkers(places) {
             var bounds = new google.maps.LatLngBounds();
             var placesList = document.getElementById('places');
@@ -136,30 +167,41 @@
         }
     </script>
 </head>
+
 <body>
-    <div id="map"></div>
-    <div id="right-panel">
-        <h2>Results</h2>
-        <ul id="places"></ul>
-        <button id="more">More results</button>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Box-Office Depot</a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <form>
+                        <div class="input-field">
+                            <input id="search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons"></i>Search Movies</i></label>
+                        </div>
+                    </form>
+                </li>
+                <li><a href="FindTheaters.html"><i class="material-icons right">add_location</i>Find Theaters Near You</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="map"></div>
+        <div id="results-panel">
+            <h2>Results</h2>
+            <ul id="places"></ul>
+            <button id="more">More results</button>
+        </div>
+        <!-- <div id="right-panel">
+            <h2>Results</h2>
+            <ul id="places"></ul>
+            <button id="more">More results</button>
+        </div> -->
     </div>
+
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA&libraries=places&callback=initMap" async defer></script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Message box-office-depot
-
-

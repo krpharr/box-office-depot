@@ -23,7 +23,8 @@ function queryGeoLocation(query) {
     });
 }
 
-$("#zipcode-submit-ID").on("click", function() {
+$("#zipcode-submit-ID").on("click", function(event) {
+    event.preventDefault();
     queryGeoLocation($("#zipcode-input-ID").val());
 });
 
@@ -76,10 +77,6 @@ function getBoxOffice() {
         // response.results[0].poster_path = First movie in the array's poster/image
     })
 }
-// getBoxOffice();
-
-
-getBoxOffice();
 
 // Function to pull coming soon movies
 function comingSoon() {
@@ -108,5 +105,3 @@ function comingSoon() {
         console.log(link + poster);
     })
 }
-
-comingSoon();

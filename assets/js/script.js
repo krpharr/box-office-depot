@@ -48,7 +48,7 @@ function getMovie() {
     })
 }
 
-// getMovie();
+getMovie();
 
 
 // Ajax function for Now Playing movies call
@@ -73,4 +73,35 @@ function getBoxOffice() {
     })
 }
 
-// getBoxOffice();
+
+getBoxOffice();
+
+// Function to pull coming soon movies
+function comingSoon() {
+    
+    var queryURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=a5366a149888ef9fe65c9fedceb22b79&region=US";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+
+        // Example response pulls for displaying info
+
+        // response.results = Array that contains 20 Box Office movies as objects
+        // response.results[0].title = First movie in the array's title
+        // response.results[0].overview = First movie in the array's plot snippit
+        // response.results[0].release_date = First movie in the array's release date
+        // response.results[0].poster_path = First movie in the array's poster/image
+ 
+        // This is how the link will need to be combined with the poster path to display the movie poster
+        var poster = response.results[0].poster_path;
+        console.log(poster);
+        var link = " http://image.tmdb.org/t/p/w185/";
+        console.log(link);
+        console.log(link + poster);
+    })
+}
+
+comingSoon();

@@ -1,12 +1,18 @@
-function queryGeoLocation() {
-    var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=23228&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA";
+function queryGeoLocation(query) {
+    var queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response) {
         console.log(response.results[0]);
+
+
     });
 }
+
+$("#zipcode-submit-ID").on("click", function() {
+    queryGeoLocation($("#zipcode-input-ID").val());
+});
 
 
 // Brian's code

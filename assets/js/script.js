@@ -20,6 +20,37 @@ function queryGeoLocation(query) {
 
         localStorage.setItem("bod-zipcodeSearch", JSON.stringify(location));
 
+
+
+    });
+}
+
+function moviesByZip(zipcode) {
+    // Query TMSAPI for all movie showings by zip code
+    let query = `http://data.tmsapi.com/v1.1/movies/showings?startDate=2019-12-22&zip=${zipcode}&api_key=jzp5d2j4p6udnznt7c3zebps`;
+    $.ajax({
+        url: query,
+        method: "GET"
+    }).then(function(response) {
+        let movies = response;
+        // create array to hold movie info objects
+        let movieShowTimes = [];
+        //loop array
+        movies.forEach(movie => {
+            //create movie info object with title and showtimes array
+            let movieInfo = {
+                title: movie.title,
+                showtimes: movie.showtimes
+            };
+            //push to array
+            movieShowTimes.push(movieInfo);
+        });
+        //build object to store to localStorage
+        let showtimesByZip = {
+            zip: zipcode,
+            showtimes: movieShowTimes
+        }
+        localStorage.setItem(`bod-showtimes-${zipcode}`, JSON.stringify(showtimesByZip));
     });
 }
 

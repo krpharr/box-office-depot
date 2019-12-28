@@ -1,0 +1,11 @@
+.card {
+    width: 200px;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 10px;
+
+}
+
+.activator {
+    width: 200px;
+}

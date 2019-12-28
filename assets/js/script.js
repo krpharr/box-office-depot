@@ -87,10 +87,48 @@ function getBoxOffice() {
 
         // Need to add id to <p> inside the div "card-reveal"
         // This way, I can select the correct element to change the text content of
+
+        for (var i = 0; i < response.results.length; i++) {
+            var poster = response.results[i].poster_path
+
+            // var carouselItem = $("<a class='carousel-item'>");
+            // $(".carousel").append(carouselItem);
+            var card = $("<div class='card'>").attr("id", "card" + i);
+            $(".row").append(card);
+
+            var cardImageContainer = $("<div class='card-image waves-effect waves-block waves-light'>");
+            var cardImage = $("<img class='activator'>").attr("src", link + poster).attr("id", "img" + i);
+            cardImageContainer.append(cardImage);
+            card.append(cardImageContainer);
+
+            var cardContent = $("<div class='card-content'>");
+            card.append(cardContent);
+            var cardTitle = $("<span>").text(response.results[i].title);
+            cardTitle.addClass("card-title activator grey-text text-darken-4");
+            cardContent.append(cardTitle);
+
+            var cardReveal = $("<div class='card-reveal'>").css("style", "display: block");
+            card.append(cardReveal);
+            var closeBtn = $("<i class='material-icons right'>").text("close");
+            var cardRevealTitle = $("<span>").text(response.results[i].title).append(closeBtn);
+            cardRevealTitle.addClass("card-title grey-text text-darken-4");
+            cardReveal.append(cardRevealTitle);
+            var cardRevealInfo = $("<p>").text(response.results[i].overview);
+            cardReveal.append(cardRevealInfo);
+
+        }
     })
 }
 
 getBoxOffice();
+
+// Trying to get the close button to work within the card reveal
+
+// $(document).click($("<i class='material-icons right'>").text("close"), function() {
+//     console.log("i've been clicked")
+//     $(".card-reveal").css("style", "display: none");
+//     $(".card").css("style", "overflow: visible");
+// })
 
 // Function to pull coming soon movies
 function comingSoon() {

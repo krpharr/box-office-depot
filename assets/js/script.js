@@ -72,8 +72,25 @@ function getBoxOffice() {
         // response.results[0].overview = First movie in the array's plot snippit
         // response.results[0].release_date = First movie in the array's release date
         // response.results[0].poster_path = First movie in the array's poster/image
+
+        // Use for loop to dynamically create a card for each movie
+        var link = " http://image.tmdb.org/t/p/w185/"; // Add the poster path to this to get back the picture
+        var poster = response.results[0].poster_path; // In a for loop, replace [0] with [i]
+        $(".card").css("width", 200);
+        $(".activator").attr("src", link + poster);
+        $(".activator").css("width", 200);
+
+        // Changing the text of card-title removes the i class "material-icons"
+        // When dynamically creating, will need to do the title + the i class
+        // $(".card-title").text(response.results[0].title);
+        $(".card-title").css("width", 150);
+
+        // Need to add id to <p> inside the div "card-reveal"
+        // This way, I can select the correct element to change the text content of
     })
 }
+
+getBoxOffice();
 
 // Function to pull coming soon movies
 function comingSoon() {

@@ -1,14 +1,36 @@
+const fullDaysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+let lsData = JSON.parse(localStorage.getItem("bod-search-showtimes-zip"));
+console.log(lsData.zip, typeof lsData.zip);
+console.log("lsData", lsData);
+moviesByZip(lsData.zip);
+
+let movies = [];
+lsData.titleArray.forEach(title => {
+    let sA = getMovieShowtimes(title);
+    let data = {
+        title: title,
+        showtimes: sA
+    }
+    movies.push(data);
+    console.log(typeof id);
+});
+
+console.log(movies);
+
 function moviesByZip(zipcode) {
     //
     // Query TMSAPI for all movie showings by zip code and write results to localStarage
     //
     localStorage.setItem("bod-movies-by-zip", zipcode);
-    let query = `http://data.tmsapi.com/v1.1/movies/showings?startDate=2019-12-22&zip=${zipcode}&api_key=jzp5d2j4p6udnznt7c3zebps`;
+    let day = moment().format("YYYY-MM-DD");
+    let query = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${day}&zip=${zipcode}&api_key=jzp5d2j4p6udnznt7c3zebps`;
     $.ajax({
         url: query,
         method: "GET"
     }).then(function(response) {
         let movies = response;
+        console.log("movies", movies);
         // create array to hold movie info objects
         let movieShowTimes = [];
         //loop array
@@ -16,6 +38,7 @@ function moviesByZip(zipcode) {
             //create movie info object with title and showtimes array
             let movieInfo = {
                 title: movie.title,
+                id: movie.id,
                 showtimes: movie.showtimes
             };
             //push to array
@@ -37,12 +60,13 @@ function getMovieShowtimes(title) {
     //
     let zip = localStorage.getItem("bod-movies-by-zip");
     let ls = JSON.parse(localStorage.getItem(`bod-showtimes-${zip}`));
-    // console.log(zip, ls);
-    // console.log(ls);
+    console.log(zip, ls);
+    console.log(ls);
     let isPlaying = ls.showtimes.filter(movie => {
         return movie.title === title;
+        console.log(movie.title, title);
     });
-    // console.log(isPlaying);
+    console.log(isPlaying);
     if (isPlaying.length < 1) {
         return [];
     }
@@ -84,4 +108,35 @@ $("#zipcode-submit-ID").on("click", function(event) {
     console.log("event");
     queryGeoLocation($("#zipcode-input-ID").val());
     moviesByZip($("#zipcode-input-ID").val());
+
+    //////////////////////////////////////////////////////////////////
+    /////////////
+    /////////////  test data display for the movie search by zip code "Star Wars: The Rise of Skywalker"
+    let title = "Star Wars: The Rise of Skywalker";
+    container = $("#placeholder-info-ID");
+    container.empty().append($("<h2>").text(title), $("<h4>").text(`${fullDaysOfWeek[moment().weekday()]} ${moment().format("M/D/YYYY")}`));
+    let theaters = sortMovieShowtimesByTheatre(getMovieShowtimes(title));
+    // console.log(theaters);
+    theaters.forEach(theatre => {
+        let div = $("<div class='col s12' style='border: 1px solid black; margin: 8px 0;padding: 8px!important;display: flex;flex-wrap: wrap;'>");
+        let h3 = $("<h3 style='width:100%'>").text(theatre[0].theatre.name);
+        div.append(h3);
+        let row = $("<div class='row center'>");
+        theatre.forEach(showtime => {
+            let showtime_div = $("<div class='col s2 center' style='display: inline; margin: 2px; padding: 4px;border: 1px solid black;'>");
+            var fandango;
+            if (showtime.ticketURI) {
+                fandango = $(`<a href='${showtime.ticketURI}' target='_blank' style='margin-left: 4px;'>${moment(showtime.dateTime).format("h:mm a")}</a>`);
+            } else {
+                fandango = $("<p style='display: inline; margin-left: 8px;'>").text(moment(showtime.dateTime).format("h:mm a"));
+            }
+            showtime_div.append(fandango);
+            row.append(showtime_div);
+        });
+        div.append(row);
+        container.append(div);
+    });
+    //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+
 });

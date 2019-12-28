@@ -1,16 +1,36 @@
 const fullDaysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+let lsData = JSON.parse(localStorage.getItem("bod-search-showtimes-zip"));
+console.log(lsData.zip, typeof lsData.zip);
+console.log("lsData", lsData);
+moviesByZip(lsData.zip);
+
+let movies = [];
+lsData.titleArray.forEach(title => {
+    let sA = getMovieShowtimes(title);
+    let data = {
+        title: title,
+        showtimes: sA
+    }
+    movies.push(data);
+    console.log(typeof id);
+});
+
+console.log(movies);
+
 function moviesByZip(zipcode) {
     //
     // Query TMSAPI for all movie showings by zip code and write results to localStarage
     //
     localStorage.setItem("bod-movies-by-zip", zipcode);
-    let query = `http://data.tmsapi.com/v1.1/movies/showings?startDate=2019-12-22&zip=${zipcode}&api_key=jzp5d2j4p6udnznt7c3zebps`;
+    let day = moment().format("YYYY-MM-DD");
+    let query = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${day}&zip=${zipcode}&api_key=jzp5d2j4p6udnznt7c3zebps`;
     $.ajax({
         url: query,
         method: "GET"
     }).then(function(response) {
         let movies = response;
+        console.log("movies", movies);
         // create array to hold movie info objects
         let movieShowTimes = [];
         //loop array
@@ -18,6 +38,7 @@ function moviesByZip(zipcode) {
             //create movie info object with title and showtimes array
             let movieInfo = {
                 title: movie.title,
+                id: movie.id,
                 showtimes: movie.showtimes
             };
             //push to array
@@ -39,12 +60,13 @@ function getMovieShowtimes(title) {
     //
     let zip = localStorage.getItem("bod-movies-by-zip");
     let ls = JSON.parse(localStorage.getItem(`bod-showtimes-${zip}`));
-    // console.log(zip, ls);
-    // console.log(ls);
+    console.log(zip, ls);
+    console.log(ls);
     let isPlaying = ls.showtimes.filter(movie => {
         return movie.title === title;
+        console.log(movie.title, title);
     });
-    // console.log(isPlaying);
+    console.log(isPlaying);
     if (isPlaying.length < 1) {
         return [];
     }

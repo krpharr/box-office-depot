@@ -87,6 +87,25 @@ function getBoxOffice() {
 
         // Need to add id to <p> inside the div "card-reveal"
         // This way, I can select the correct element to change the text content of
+
+
+        ////////////////////////////////
+        // populate movie selector and find showtimes form
+        //
+        let mArray = response.results;
+        console.log(mArray);
+        mArray.forEach(movie => {
+            let div = $("<div>");
+            let cb = $("<input  type='checkbox' class='filled-in'>");
+            cb.attr("data-title", movie.title);
+            let label = $("<label>");
+            let span = $("<span>").text(movie.title);
+            label.append(cb, span);
+            div.append(label);
+            $("#select-current-movies-ID").append(div);
+
+        });
+        ////////////////////////////////
     })
 }
 
@@ -119,3 +138,30 @@ function comingSoon() {
         console.log(link + poster);
     })
 }
+
+
+////////////////////////////////
+//  movies by zip showtimes search button event handler
+//
+$("#btn-movies-by-zip-ID").on("click", function(event) {
+    event.preventDefault();
+    // primitive validation
+    if ($("#zipcode-input-ID").val() === "") {
+        return;
+    }
+    // console.log($(this));
+    let cbArray = $(this)[0].form.elements;
+    // console.log(cbArray.length);
+    let selMoviesTitleArray = [];
+    for (let i = 0; i < cbArray.length; i++) {
+        // console.log(cbArray[i].checked);
+        if (cbArray[i].checked) selMoviesTitleArray.push($(cbArray[i]).data("title"));
+    }
+    // console.log(selMoviesIDArray);
+    let saveData = {
+        zip: $("#zipcode-input-ID").val(),
+        titleArray: selMoviesTitleArray
+    }
+    localStorage.setItem("bod-search-showtimes-zip", JSON.stringify(saveData));
+    window.location.href = "FindTheaters.html";
+});

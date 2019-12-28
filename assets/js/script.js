@@ -21,6 +21,7 @@ function queryGeoLocation(query){
         localStorage.setItem("bod-zipcodeSearch",JSON.stringify(location));
 
     });
+    
 }
 
 

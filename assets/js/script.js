@@ -88,10 +88,66 @@ function getBoxOffice() {
 
         // Need to add id to <p> inside the div "card-reveal"
         // This way, I can select the correct element to change the text content of
+
+        for (var i = 0; i < response.results.length; i++) {
+            var poster = response.results[i].poster_path
+
+            // var carouselItem = $("<a class='carousel-item'>");
+            // $(".carousel").append(carouselItem);
+            var card = $("<div class='card'>").attr("id", "card" + i);
+            $(".row").append(card);
+
+            var cardImageContainer = $("<div class='card-image waves-effect waves-block waves-light'>");
+            var cardImage = $("<img class='activator'>").attr("src", link + poster).attr("id", "img" + i);
+            cardImageContainer.append(cardImage);
+            card.append(cardImageContainer);
+
+            var cardContent = $("<div class='card-content'>");
+            card.append(cardContent);
+            var cardTitle = $("<span>").text(response.results[i].title);
+            cardTitle.addClass("card-title activator grey-text text-darken-4");
+            cardContent.append(cardTitle);
+
+            var cardReveal = $("<div class='card-reveal'>").css("style", "display: block");
+            card.append(cardReveal);
+            var closeBtn = $("<i class='material-icons right'>").text("close");
+            var cardRevealTitle = $("<span>").text(response.results[i].title).append(closeBtn);
+            cardRevealTitle.addClass("card-title grey-text text-darken-4");
+            cardReveal.append(cardRevealTitle);
+            var cardRevealInfo = $("<p>").text(response.results[i].overview);
+            cardReveal.append(cardRevealInfo);
+
+        }
+
+        ////////////////////////////////
+        // populate movie selector and find showtimes form
+        //
+        let mArray = response.results;
+        console.log(mArray);
+        mArray.forEach(movie => {
+            let div = $("<div>");
+            let cb = $("<input  type='checkbox' class='filled-in'>");
+            cb.attr("data-title", movie.title);
+            let label = $("<label>");
+            let span = $("<span>").text(movie.title);
+            label.append(cb, span);
+            div.append(label);
+            $("#select-current-movies-ID").append(div);
+
+        });
+        ////////////////////////////////
     })
 }
 
 getBoxOffice();
+
+// Trying to get the close button to work within the card reveal
+
+// $(document).click($("<i class='material-icons right'>").text("close"), function() {
+//     console.log("i've been clicked")
+//     $(".card-reveal").css("style", "display: none");
+//     $(".card").css("style", "overflow: visible");
+// })
 
 // Function to pull coming soon movies
 function comingSoon() {
@@ -120,3 +176,30 @@ function comingSoon() {
         console.log(link + poster);
     })
 }
+
+
+////////////////////////////////
+//  movies by zip showtimes search button event handler
+//
+$("#btn-movies-by-zip-ID").on("click", function(event) {
+    event.preventDefault();
+    // primitive validation
+    if ($("#zipcode-input-ID").val() === "") {
+        return;
+    }
+    // console.log($(this));
+    let cbArray = $(this)[0].form.elements;
+    // console.log(cbArray.length);
+    let selMoviesTitleArray = [];
+    for (let i = 0; i < cbArray.length; i++) {
+        // console.log(cbArray[i].checked);
+        if (cbArray[i].checked) selMoviesTitleArray.push($(cbArray[i]).data("title"));
+    }
+    // console.log(selMoviesIDArray);
+    let saveData = {
+        zip: $("#zipcode-input-ID").val(),
+        titleArray: selMoviesTitleArray
+    }
+    localStorage.setItem("bod-search-showtimes-zip", JSON.stringify(saveData));
+    window.location.href = "FindTheaters.html";
+});

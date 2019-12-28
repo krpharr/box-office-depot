@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
@@ -7,31 +8,38 @@
     <style>
         /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
+        
         #map {
             height: 100%;
         }
         /* Optional: Makes the sample page fill the window. */
+        
         html,
         body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
+        
         #right-panel {
             font-family: 'Roboto', 'sans-serif';
             line-height: 30px;
             padding-left: 10px;
         }
+        
         #right-panel select,
         #right-panel input {
             font-size: 15px;
         }
+        
         #right-panel select {
             width: 100%;
         }
+        
         #right-panel i {
             font-size: 12px;
         }
+        
         #right-panel {
             font-family: Arial, Helvetica, sans-serif;
             position: absolute;
@@ -45,10 +53,12 @@
             border: 1px solid #999;
             background: #fff;
         }
+        
         h2 {
             font-size: 22px;
             margin: 0 0 5px 0;
         }
+        
         ul {
             list-style-type: none;
             padding: 0;
@@ -57,6 +67,7 @@
             width: 200px;
             overflow-y: scroll;
         }
+        
         li {
             background-color: #F1F1F1;
             padding: 10px;
@@ -64,9 +75,11 @@
             white-space: nowrap;
             overflow: hidden;
         }
+        
         li:nth-child(odd) {
             background-color: #FCFCFC;
         }
+        
         #more {
             width: 100%;
             margin: 5px 0 0 0;
@@ -77,6 +90,7 @@
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
         var map;
+
         function initMap() {
             // Create the map.
             var pyrmont = {
@@ -110,6 +124,7 @@
                     };
                 });
         }
+
         function createMarkers(places) {
             var bounds = new google.maps.LatLngBounds();
             var placesList = document.getElementById('places');
@@ -136,6 +151,7 @@
         }
     </script>
 </head>
+
 <body>
     <div id="map"></div>
     <div id="right-panel">
@@ -145,6 +161,7 @@
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA&libraries=places&callback=initMap" async defer></script>
 </body>
+
 </html>
 
 
@@ -161,5 +178,3 @@
 
 
 Message box-office-depot
-
-

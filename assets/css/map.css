@@ -1,0 +1,87 @@
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        
+        #map {
+            height: 50%;
+            width: 100%;
+            margin-top: 16px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            height: 100%;
+        }
+        
+        #results-panel {
+            font-family: 'Roboto', 'sans-serif';
+            line-height: 30px;
+            margin-top: 16px;
+            padding-left: 10px;
+        }
+        
+        #results-panel select,
+        #results-panel input {
+            font-size: 15px;
+        }
+        
+        #results-panel select {
+            width: 100%;
+        }
+        
+        #results-panel i {
+            font-size: 12px;
+        }
+        
+        #results-panel {
+            /* font-family: Arial, Helvetica, sans-serif; */
+            /* position: absolute;
+        right: 5px;
+        top: 60%;
+        margin-top: -195px;
+        height: 330px;
+        width: 200px; */
+            padding: 5px;
+            z-index: 5;
+            border: 1px solid #999;
+            background: #fff;
+        }
+        
+        h2 {
+            font-size: 22px;
+            margin: 0 0 5px 0;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            /* height: 271px; */
+            width: 300px;
+            /* overflow-y: scroll; */
+        }
+        
+        li {
+            background-color: #F1F1F1;
+            padding: 10px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        li:nth-child(odd) {
+            background-color: #FCFCFC;
+        }
+        
+        #more {
+            width: 100%;
+            margin: 5px 0 0 0;
+        }

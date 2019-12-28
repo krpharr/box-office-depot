@@ -1,10 +1,10 @@
-function queryGeoLocation(query){
+function queryGeoLocation(query) {
     // var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=23228&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA";
     var queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(response){
+    }).then(function(response) {
         // console.log(response);
 
         let results = response;
@@ -18,7 +18,9 @@ function queryGeoLocation(query){
         };
         console.log(location)
 
-        localStorage.setItem("bod-zipcodeSearch",JSON.stringify(location));
+        localStorage.setItem("bod-zipcodeSearch", JSON.stringify(location));
+
+
 
     });
 }
@@ -48,7 +50,7 @@ function getMovie() {
     })
 }
 
-getMovie();
+// getMovie();
 
 
 // Ajax function for Now Playing movies call
@@ -73,12 +75,9 @@ function getBoxOffice() {
     })
 }
 
-
-getBoxOffice();
-
 // Function to pull coming soon movies
 function comingSoon() {
-    
+
     var queryURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=a5366a149888ef9fe65c9fedceb22b79&region=US";
 
     $.ajax({
@@ -94,7 +93,7 @@ function comingSoon() {
         // response.results[0].overview = First movie in the array's plot snippit
         // response.results[0].release_date = First movie in the array's release date
         // response.results[0].poster_path = First movie in the array's poster/image
- 
+
         // This is how the link will need to be combined with the poster path to display the movie poster
         var poster = response.results[0].poster_path;
         console.log(poster);
@@ -103,5 +102,3 @@ function comingSoon() {
         console.log(link + poster);
     })
 }
-
-comingSoon();

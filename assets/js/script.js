@@ -23,7 +23,7 @@ function queryGeoLocation(query) {
 
 
     });
-    
+
 }
 
 
@@ -95,7 +95,7 @@ function getBoxOffice() {
             // var carouselItem = $("<a class='carousel-item'>");
             // $(".carousel").append(carouselItem);
             var card = $("<div class='card'>").attr("id", "card" + i);
-            $(".row").append(card);
+            $("#now-playing-ID").append(card);
 
             var cardImageContainer = $("<div class='card-image waves-effect waves-block waves-light'>");
             var cardImage = $("<img class='activator'>").attr("src", link + poster).attr("id", "img" + i);

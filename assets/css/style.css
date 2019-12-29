@@ -3,9 +3,14 @@
     display: inline-block;
     box-sizing: border-box;
     margin: 10px;
-
 }
 
 .activator {
     width: 200px;
+}
+
+.theater-showtimes-container {
+    margin: 16px 0;
+    padding: 16px;
+    border: 1px solid lightgrey;
 }

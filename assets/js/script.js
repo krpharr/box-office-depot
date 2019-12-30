@@ -23,6 +23,7 @@ function queryGeoLocation(query) {
 
 
     });
+
 }
 
 
@@ -96,7 +97,7 @@ function getBoxOffice() {
             // Try adding the href and set it equal to #[i]!
             // Not sure it will work, but try
             var card = $("<div class='card'>").attr("id", "card" + i);
-            $(".row").append(card);
+            $("#now-playing-ID").append(card);
 
             var cardImageContainer = $("<div class='card-image waves-effect waves-block waves-light'>");
             var cardImage = $("<img class='activator'>").attr("src", link + poster).attr("id", "img" + i);

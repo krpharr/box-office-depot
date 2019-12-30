@@ -75,7 +75,11 @@ function createMarkers(places) {
 
         let container = $("<div>").data("ID", i);
         let name = $("<h5>").text(theatre.name);
-        let address = $("<p>").text(theatre.vicinity);
+        let address = $("<a>").text(theatre.vicinity);
+        var str = "https://www.google.com/maps/place/";
+        str += theatre.vicinity.replace( " ","+");
+        address.attr("href",str);
+        address.attr("target","_blank");
         let id = $("<div>").text(theatre.id);
         let place_id = $("<div>").text(theatre.place_id);
         container.append(name, address, id, place_id);

@@ -9,8 +9,30 @@
     width: 200px;
 }
 
-.theater-showtimes-container {
+.movie-and-theaters-container {
     margin: 16px 0;
     padding: 16px;
     border: 1px solid lightgrey;
+}
+
+.theaters {
+    border: 1px solid black;
+    margin: 8px 0;
+    padding: 8px;
+}
+
+.theatre-showtimes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* border: 1px solid black; */
+    margin: 8px 0;
+    padding: 16px;
+}
+
+.showtime {
+    display: flex;
+    margin: 2px;
+    padding: 4px;
+    border: 1px solid black;
 }

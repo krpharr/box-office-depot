@@ -126,7 +126,7 @@ function populateMovieListings(mArray) {
             $("#not-playing-in-zip-ID").show();
             $("#not-playing-in-zip-ID").append($("<div>").text(movie.title));
         } else {
-            let movieInfo = $("<div>").addClass("theater-showtimes-container");
+            let movieInfo = $("<div>").addClass("movie-and-theaters-container");
             movieInfo.append($("<h2>").text(movie.title), $("<h4>").text(`${fullDaysOfWeek[moment().weekday()]} ${moment().format("M/D/YYYY")}`));
 
             let theaters = sortMovieShowtimesByTheatre(getMovieShowtimes(movie.title));
@@ -134,12 +134,12 @@ function populateMovieListings(mArray) {
 
             theaters.forEach(theatre => {
                 if (theatre.length > 0) {
-                    let div = $("<div class='col s12' style='border: 1px solid black; margin: 8px 0;padding: 8px!important;display: flex;flex-wrap: wrap;'>");
+                    let div = $("<div class='col s12 theaters'>");
                     let h3 = $("<h3 style='width:100%'>").text(theatre[0].theatre.name);
                     div.append(h3);
-                    let row = $("<div class='row center'>");
+                    let row = $("<div class='row theatre-showtimes'>");
                     theatre.forEach(showtime => {
-                        let showtime_div = $("<div class='col s2 center' style='display: inline; margin: 2px; padding: 4px;border: 1px solid black;'>");
+                        let showtime_div = $("<div class='col s2 center showtime'>");
                         var fandango;
                         if (showtime.ticketURI) {
                             fandango = $(`<a href='${showtime.ticketURI}' target='_blank' style='margin-left: 4px;'>${moment(showtime.dateTime).format("h:mm a")}</a>`);

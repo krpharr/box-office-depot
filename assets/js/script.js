@@ -1,30 +1,3 @@
-function queryGeoLocation(query) {
-    // var queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=23228&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA";
-    var queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(response) {
-        // console.log(response);
-
-        let results = response;
-        // console.log(response.results[0].formatted_address);
-        // console.log(response.results[0].geometry.location);
-
-        var location = {
-            address: response.results[0].formatted_address,
-            lat: response.results[0].geometry.location.lat,
-            lng: response.results[0].geometry.location.lng
-        };
-        console.log(location)
-
-        localStorage.setItem("bod-zipcodeSearch", JSON.stringify(location));
-
-    });
-
-}
-
-
 // Brian's code
 // Ajax function for OMDb call
 function getMovie() {
@@ -159,29 +132,31 @@ getBoxOffice();
 $("#btn-movies-by-zip-ID").on("click", function(event) {
     event.preventDefault();
     // primitive validation
-    if ($("#zipcode-input-ID").val() === "") {
+    let zipcode = $("#zipcode-input-ID").val();
+    if (zipcode === "") {
         return;
     }
-    // console.log($(this));
+    // get checkbox elements
     let cbArray = $(this)[0].form.elements;
-    // console.log(cbArray.length);
+    // create array to hold selected movie titles
     let selMoviesTitleArray = [];
+    // find movies that are selected and push to array
     for (let i = 0; i < cbArray.length; i++) {
-        // console.log(cbArray[i].checked);
         if (cbArray[i].checked) {
             selMoviesTitleArray.push($(cbArray[i]).data("title"));
         }
     }
+    // if none are selected -> push all movie titles
     if (selMoviesTitleArray.length < 1) {
         for (let i = 0; i < cbArray.length; i++) {
             selMoviesTitleArray.push($(cbArray[i]).data("title"));
         }
     }
-    // console.log(selMoviesIDArray);
     let saveData = {
-        zip: $("#zipcode-input-ID").val(),
+        zip: zipcode,
         titleArray: selMoviesTitleArray
-    }
+    };
+    // save to local storage
     localStorage.setItem("bod-search-showtimes-zip", JSON.stringify(saveData));
     window.location.href = "FindTheaters.html";
 });

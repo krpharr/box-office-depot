@@ -1,8 +1,20 @@
+/* Styling for the dynamically created "Now Playing" movie cards */
+
+#now-playing-ID {
+    text-align: center;
+}
+
 .card {
     width: 200px;
     display: inline-block;
     box-sizing: border-box;
     margin: 10px;
+    top: 0;
+    transition: top ease 0.5s;
+}
+
+.card:hover {
+    top: -6px;
 }
 
 .activator {
@@ -35,4 +47,15 @@
     margin: 2px;
     padding: 4px;
     border: 1px solid black;
+}
+
+.card-content {
+    padding: 20px 8px !important;
+    overflow: hidden !important;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 13px !important;
+    width: 100%;
 }

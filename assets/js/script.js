@@ -94,6 +94,8 @@ function getBoxOffice() {
 
             // var carouselItem = $("<a class='carousel-item'>");
             // $(".carousel").append(carouselItem);
+            // Try adding the href and set it equal to #[i]!
+            // Not sure it will work, but try
             var card = $("<div class='card'>").attr("id", "card" + i);
             $("#now-playing-ID").append(card);
 
@@ -102,6 +104,10 @@ function getBoxOffice() {
             cardImageContainer.append(cardImage);
             card.append(cardImageContainer);
 
+            // Make the text content for the title smaller
+            // Also add the scores from rotten tomatoes?
+            // Do we want to display the release date?
+            // Perhaps add the release date to the reveal tab
             var cardContent = $("<div class='card-content'>");
             card.append(cardContent);
             var cardTitle = $("<span>").text(response.results[i].title);

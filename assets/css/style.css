@@ -9,11 +9,12 @@
     display: inline-block;
     box-sizing: border-box;
     margin: 10px;
+    top: 0;
+    transition: top ease 0.5s;
 }
 
 .card:hover {
-    transition: 1.5s;
-    width: 207px;
+    top: -6px;
 }
 
 .activator {

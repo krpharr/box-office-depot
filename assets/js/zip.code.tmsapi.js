@@ -9,15 +9,18 @@ moviesByZip(lsData.zip);
 let movies = [];
 lsData.titleArray.forEach(title => {
     let sA = getMovieShowtimes(title);
+    var showing = true;
+    if (sA.length < 1) showing = false;
     let data = {
         title: title,
+        showing: showing,
         showtimes: sA
     }
     movies.push(data);
     console.log(typeof id);
 });
 
-console.log(movies);
+console.log("movies", movies);
 populateMovieListings(movies);
 
 
@@ -63,7 +66,13 @@ function getMovieShowtimes(title) {
     // search local storage by movie title ( call after moviesByZip() ) and return array of showtime info objects
     //
     let zip = localStorage.getItem("bod-movies-by-zip");
+    $(".zip").text(zip);
     let ls = JSON.parse(localStorage.getItem(`bod-showtimes-${zip}`));
+    if (ls === null || ls.length < 1) {
+        ls = [];
+        // ls.push(`${title} - not playing in zip code.`);
+        return ls;
+    }
     console.log(zip, ls);
     let isPlaying = ls.showtimes.filter(movie => {
         return movie.title === title;
@@ -107,72 +116,49 @@ function sortMovieShowtimesByTheatre(movieShowtimesArray) {
 
 function populateMovieListings(mArray) {
     // let title = "Star Wars: The Rise of Skywalker";
-    container = $("#placeholder-info-ID");
+
+    let container = $("#placeholder-info-ID");
     container.empty();
     mArray.forEach(movie => {
         console.log(movie.title);
-        container.append($("<h2>").text(movie.title), $("<h4>").text(`${fullDaysOfWeek[moment().weekday()]} ${moment().format("M/D/YYYY")}`));
-        let theaters = sortMovieShowtimesByTheatre(getMovieShowtimes(movie.title));
-        // console.log(theaters);
-        theaters.forEach(theatre => {
-            let div = $("<div class='col s12' style='border: 1px solid black; margin: 8px 0;padding: 8px!important;display: flex;flex-wrap: wrap;'>");
-            let h3 = $("<h3 style='width:100%'>").text(theatre[0].theatre.name);
-            div.append(h3);
-            let row = $("<div class='row center'>");
-            theatre.forEach(showtime => {
-                let showtime_div = $("<div class='col s2 center' style='display: inline; margin: 2px; padding: 4px;border: 1px solid black;'>");
-                var fandango;
-                if (showtime.ticketURI) {
-                    fandango = $(`<a href='${showtime.ticketURI}' target='_blank' style='margin-left: 4px;'>${moment(showtime.dateTime).format("h:mm a")}</a>`);
-                } else {
-                    fandango = $("<p style='display: inline; margin-left: 8px;'>").text(moment(showtime.dateTime).format("h:mm a"));
-                }
-                showtime_div.append(fandango);
-                row.append(showtime_div);
-            });
-            div.append(row);
-            container.append(div);
-        });
-    });
+        // if movie is not playing - add to not playing div
+        if (movie.showing === false) {
+            $("#not-playing-in-zip-ID").show();
+            $("#not-playing-in-zip-ID").append($("<div>").text(movie.title));
+        } else {
+            let movieInfo = $("<div>").addClass("movie-and-theaters-container");
+            movieInfo.append($("<h2>").text(movie.title), $("<h4>").text(`${fullDaysOfWeek[moment().weekday()]} ${moment().format("M/D/YYYY")}`));
 
+            let theaters = sortMovieShowtimesByTheatre(getMovieShowtimes(movie.title));
+            console.log("theaters", theaters);
+
+            theaters.forEach(theatre => {
+                if (theatre.length > 0) {
+                    let div = $("<div class='col s12 theaters'>");
+                    let h3 = $("<h3 style='width:100%'>").text(theatre[0].theatre.name);
+                    div.append(h3);
+                    let row = $("<div class='row theatre-showtimes'>");
+                    theatre.forEach(showtime => {
+                        let showtime_div = $("<div class='center showtime'>");
+                        var fandango;
+                        // todo -> check to see if showtime has passed and grey out text and no liks to fandango
+                        if (showtime.ticketURI) {
+                            fandango = $(`<a href='${showtime.ticketURI}' target='_blank' style='margin-left: 4px;'>${moment(showtime.dateTime).format("h:mm a")}</a>`);
+                        } else {
+                            fandango = $("<p style='display: inline; margin-left: 8px;'>").text(moment(showtime.dateTime).format("h:mm a"));
+                        }
+                        showtime_div.append(fandango);
+                        row.append(showtime_div);
+                    });
+                    div.append(row);
+                    movieInfo.append(div);
+
+                }
+
+            });
+            container.append(movieInfo);
+        }
+
+    });
 
 }
-
-
-$("#zipcode-submit-ID").on("click", function(event) {
-    event.preventDefault();
-    console.log("event");
-    queryGeoLocation($("#zipcode-input-ID").val());
-    moviesByZip($("#zipcode-input-ID").val());
-
-    //////////////////////////////////////////////////////////////////
-    /////////////
-    /////////////  test data display for the movie search by zip code "Star Wars: The Rise of Skywalker"
-    let title = "Star Wars: The Rise of Skywalker";
-    container = $("#placeholder-info-ID");
-    container.empty().append($("<h2>").text(title), $("<h4>").text(`${fullDaysOfWeek[moment().weekday()]} ${moment().format("M/D/YYYY")}`));
-    let theaters = sortMovieShowtimesByTheatre(getMovieShowtimes(title));
-    // console.log(theaters);
-    theaters.forEach(theatre => {
-        let div = $("<div class='col s12' style='border: 1px solid black; margin: 8px 0;padding: 8px!important;display: flex;flex-wrap: wrap;'>");
-        let h3 = $("<h3 style='width:100%'>").text(theatre[0].theatre.name);
-        div.append(h3);
-        let row = $("<div class='row center'>");
-        theatre.forEach(showtime => {
-            let showtime_div = $("<div class='col s2 center' style='display: inline; margin: 2px; padding: 4px;border: 1px solid black;'>");
-            var fandango;
-            if (showtime.ticketURI) {
-                fandango = $(`<a href='${showtime.ticketURI}' target='_blank' style='margin-left: 4px;'>${moment(showtime.dateTime).format("h:mm a")}</a>`);
-            } else {
-                fandango = $("<p style='display: inline; margin-left: 8px;'>").text(moment(showtime.dateTime).format("h:mm a"));
-            }
-            showtime_div.append(fandango);
-            row.append(showtime_div);
-        });
-        div.append(row);
-        container.append(div);
-    });
-    //////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////
-
-});

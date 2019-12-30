@@ -1,5 +1,5 @@
-
 /* Styling for the dynamically created "Now Playing" movie cards */
+
 #now-playing-ID {
     text-align: center;
 }
@@ -19,6 +19,44 @@
 
 .activator {
     width: 200px;
+}
+
+.select-current-movies-container {
+    /* margin: 16px 0; */
+    padding: 16px;
+    /* border: 1px solid lightgrey; */
+}
+
+#select-current-movies-ID {
+    margin-top: 8px;
+}
+
+.movie-and-theaters-container {
+    margin: 16px 0;
+    padding: 16px;
+    border: 1px solid lightgrey;
+}
+
+.theaters {
+    border: 1px solid lightgrey;
+    margin: 8px 0;
+    padding: 8px;
+}
+
+.theatre-showtimes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    /* border: 1px solid black; */
+    margin: 8px 0;
+    padding: 16px;
+}
+
+.showtime {
+    display: flex;
+    margin: 2px;
+    padding: 4px;
+    border: 1px solid black;
 }
 
 .card-content {

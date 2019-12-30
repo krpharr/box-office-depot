@@ -139,8 +139,9 @@ function populateMovieListings(mArray) {
                     div.append(h3);
                     let row = $("<div class='row theatre-showtimes'>");
                     theatre.forEach(showtime => {
-                        let showtime_div = $("<div class='col s2 center showtime'>");
+                        let showtime_div = $("<div class='center showtime'>");
                         var fandango;
+                        // todo -> check to see if showtime has passed and grey out text and no liks to fandango
                         if (showtime.ticketURI) {
                             fandango = $(`<a href='${showtime.ticketURI}' target='_blank' style='margin-left: 4px;'>${moment(showtime.dateTime).format("h:mm a")}</a>`);
                         } else {

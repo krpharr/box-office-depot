@@ -20,8 +20,6 @@ function queryGeoLocation(query) {
 
         localStorage.setItem("bod-zipcodeSearch", JSON.stringify(location));
 
-
-
     });
 
 }
@@ -199,7 +197,14 @@ $("#btn-movies-by-zip-ID").on("click", function(event) {
     let selMoviesTitleArray = [];
     for (let i = 0; i < cbArray.length; i++) {
         // console.log(cbArray[i].checked);
-        if (cbArray[i].checked) selMoviesTitleArray.push($(cbArray[i]).data("title"));
+        if (cbArray[i].checked) {
+            selMoviesTitleArray.push($(cbArray[i]).data("title"));
+        }
+    }
+    if (selMoviesTitleArray.length < 1) {
+        for (let i = 0; i < cbArray.length; i++) {
+            selMoviesTitleArray.push($(cbArray[i]).data("title"));
+        }
     }
     // console.log(selMoviesIDArray);
     let saveData = {

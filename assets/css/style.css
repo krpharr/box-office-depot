@@ -21,6 +21,16 @@
     width: 200px;
 }
 
+.select-current-movies-container {
+    /* margin: 16px 0; */
+    padding: 16px;
+    /* border: 1px solid lightgrey; */
+}
+
+#select-current-movies-ID {
+    margin-top: 8px;
+}
+
 .movie-and-theaters-container {
     margin: 16px 0;
     padding: 16px;
@@ -28,7 +38,7 @@
 }
 
 .theaters {
-    border: 1px solid black;
+    border: 1px solid lightgrey;
     margin: 8px 0;
     padding: 8px;
 }
@@ -36,7 +46,7 @@
 .theatre-showtimes {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
     /* border: 1px solid black; */
     margin: 8px 0;
     padding: 16px;

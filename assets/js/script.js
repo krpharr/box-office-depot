@@ -1,5 +1,3 @@
-navigator.geolocation.getCurrentPosition(success, error, options);
-
 // Brian's code
 // Ajax function for OMDb call
 function getMovie() {

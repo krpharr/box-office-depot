@@ -8,6 +8,10 @@ body {
     text-align: center;
 }
 
+#coming-soon-ID {
+    text-align: center;
+}
+
 .card {
     width: 200px;
     display: inline-block;
@@ -40,7 +44,7 @@ body {
 .movie-and-theaters-container {
     margin: 16px 0;
     padding: 16px;
-    border: 1px solid lightgrey;
+    border: 1px solid black;
 }
 
 .theaters {

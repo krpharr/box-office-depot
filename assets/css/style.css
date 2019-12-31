@@ -1,3 +1,13 @@
+/* Navbar logo styling */
+.brand-logo {
+    margin-left: 20px;
+}
+
+.subHeader {
+    font-family: 'Raleway', sans-serif;
+    color: #302f2f;
+}
+
 /* Styling for the dynamically created "Now Playing" movie cards */
 #now-playing-ID {
     text-align: center;

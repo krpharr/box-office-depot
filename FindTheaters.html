@@ -21,12 +21,21 @@
 
     <nav>
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Box-Office Depot</a>
-            <ul class="right">
-                <li><a href="map.html"><i class="material-icons right">add_location</i>Map</a></li>
-            </ul>
+          <a href="#!" class="brand-logo">Box-Office-Depot</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="comingSoon.html">Coming Soon</a></li>
+            <li><a href="map.html">Theaters Near You</a></li>
+            
+          </ul>
         </div>
-    </nav>
+      </nav>
+      <ul class="sidenav" id="mobile-demo">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="comingSoon.html">Coming Soon</a></li>
+            <li><a href="map.html">Theaters Near You</a></li>
+      </ul>
 
 
     <!-- maps zip search  -->
@@ -47,6 +56,11 @@
     </script>
     <script src="assets/js/zip.code.tmsapi.js"></script>
     <script type="text/javascript" src="assets/js/script.js"></script>
+    <script>
+     $(document).ready(function(){
+        $('.sidenav').sidenav();
+      });
+    </script>
 
 
 </body>

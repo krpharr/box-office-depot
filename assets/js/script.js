@@ -1,3 +1,85 @@
+$(document).ready(function() {
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+    };
+
+    function success(pos) {
+        var crd = pos.coords;
+
+        // test code //
+        // var crd = {
+        //     latitude: 40.7484405,
+        //     longitude: -73.9856644
+        // };
+        ////////////
+
+        console.log('Your current position is:');
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+
+        queryZipCodeByLocation(crd);
+    }
+
+    function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+});
+
+function queryZipCodeByLocation(coords) {
+
+    let str = coords.latitude.toFixed(2);
+
+    console.log("toFixed", str);
+
+    var queryURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude.toFixed(2)},${coords.longitude.toFixed(2)}&location_type=ROOFTOP&result_type=street_address&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+    }).then(function(response) {
+        // console.log("then", response);
+
+        if (response.status === "ZERO_RESULTS") {
+
+        } else {
+            // console.log(response.results[0].formatted_address);
+            // console.log(response.results[0].geometry.location);
+
+            var location = {
+                address: response.results[0].formatted_address,
+                lat: response.results[0].geometry.location.lat,
+                lng: response.results[0].geometry.location.lng
+            };
+            console.log(location)
+
+            let acArray = response.results[0].address_components;
+            // console.log("acArray", acArray);
+            var zipcode;
+            for (let i = 0; i < acArray.length; i++) {
+                if (acArray[i].types[0] === "postal_code") {
+                    zipcode = acArray[i].long_name;
+                }
+            }
+            console.log(zipcode);
+
+            // save zip code to local storage
+            localStorage.setItem("bod-movies-by-zip", JSON.stringify(zipcode));
+
+            $("#zipcode-input-ID").val(zipcode);
+
+        }
+
+    }).fail(function() {
+        $('#modal1').modal('open');
+    });
+
+}
+
+
 // Brian's code
 // Ajax function for OMDb call
 function getMovie() {

@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Box-Office Depot</title>
-
+    <title>Box-Office Depot - Now Playing</title>
 </head>
 
 <body>
@@ -35,34 +33,27 @@
     </ul>
 
 
-    <!-- maps zip search  -->
-    <div class="container">
-
-        <div class="movie-and-theaters-container" id="not-playing-in-zip-ID" style="display: none;">
-            <h4><span>No showtimes in&nbsp;</span><span class="zip"></span><span>&nbsp;for:</span></h4>
+    <main>
+        <div class="carousel" id="now-playing-carousel-ID">
         </div>
+    </main>
 
-        <div id="placeholder-info-ID"></div>
 
 
-    </div>
+    <!-- display movies and theaters -->
+    <div id="now-playing-container-ID"></div>
 
-    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="assets/js/moment.js"></script>
     <script src="assets/js/zip.code.tmsapi.js"></script>
-    <script src="assets/js/findtheaters.js"></script>
+    <script src="assets/js/nowplaying.js"></script>
     <script>
         $(document).ready(function() {
             $('.sidenav').sidenav();
+            // $('.carousel').carousel();
             moment().format();
-
-
         });
     </script>
-    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-
 
 </body>
 

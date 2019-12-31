@@ -5,35 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Box-Office Depot</title>
-</head>
-<!-- Materialize CDN Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="assets/css/style.css">
+    <!-- Materialize CDN Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
 <body>
 
-   
+
     <nav>
         <div class="nav-wrapper">
-          <a href="#!" class="brand-logo">Box-Office-Depot</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="comingSoon.html">Coming Soon</a></li>
-            <li><a href="map.html">Theaters Near You</a></li>
-            
-          </ul>
+            <a href="#!" class="brand-logo">Box-Office-Depot</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="comingSoon.html">Coming Soon</a></li>
+                <li><a href="nowplaying.html">Now Playing</a></li>
+                <li><a href="map.html">Theaters Near You</a></li>
+
+            </ul>
         </div>
-      </nav>
-      <ul class="sidenav" id="mobile-demo">
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
         <li><a href="index.html">Home</a></li>
-            <li><a href="comingSoon.html">Coming Soon</a></li>
-            <li><a href="map.html">Theaters Near You</a></li>
-      </ul>
+        <li><a href="comingSoon.html">Coming Soon</a></li>
+        <li><a href="nowplaying.html">Now Playing</a></li>
+        <li><a href="map.html">Theaters Near You</a></li>
+    </ul>
 
     <div class="card">
         <div class="card-image waves-effect waves-block waves-light">
@@ -67,7 +68,7 @@
                         </div>
                     </div>
                     <div class="input-field col s6">
-                        <input placeholder="23228" id="zipcode-input-ID" type="text">
+                        <input placeholder="zip code" id="zipcode-input-ID" type="text">
                         <label for="zipcode-input-ID">Search movies showtimes by zip code.</label>
                     </div>
                 </div>
@@ -78,15 +79,35 @@
         </div>
     </div>
 
-    <!-- Materialize CDN Compiled and minified JavaScript -->
+    <!-- ////////////////// 
+    // Modals 
+    /////////////////////// -->
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Location Failure</h4>
+            <p>Can not determine your zip code.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+        </div>
+    </div>
+
+
+
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA&libraries=places"></script>
     <script src="assets/js/script.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
     <script>
-    $(document).ready(function(){
-        $('.sidenav').sidenav();
-      });
-      </script>
+        $(document).ready(function() {
+            $('.sidenav').sidenav();
+            $('.modal').modal();
+        });
+    </script>
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
 </body>
 
 

@@ -4,16 +4,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Box-Office Depot</title>
-
-    <!-- Materialize CDN Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="assets/css/style.css">
-
-
+    <title>Box-Office Depot</title>
 
 </head>
 
@@ -21,21 +16,21 @@
 
     <nav>
         <div class="nav-wrapper">
-          <a href="#!" class="brand-logo">Box-Office-Depot</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="comingSoon.html">Coming Soon</a></li>
-            <li><a href="map.html">Theaters Near You</a></li>
-            
-          </ul>
+            <a href="#!" class="brand-logo">Box-Office-Depot</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="comingSoon.html">Coming Soon</a></li>
+                <li><a href="map.html">Theaters Near You</a></li>
+
+            </ul>
         </div>
-      </nav>
-      <ul class="sidenav" id="mobile-demo">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="comingSoon.html">Coming Soon</a></li>
-            <li><a href="map.html">Theaters Near You</a></li>
-      </ul>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="comingSoon.html">Coming Soon</a></li>
+        <li><a href="map.html">Theaters Near You</a></li>
+    </ul>
 
 
     <!-- maps zip search  -->
@@ -50,17 +45,21 @@
 
     </div>
 
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="assets/js/moment.js"></script>
-    <script>
-        moment().format();
-    </script>
     <script src="assets/js/zip.code.tmsapi.js"></script>
-    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script src="assets/js/findtheaters.js"></script>
     <script>
-     $(document).ready(function(){
-        $('.sidenav').sidenav();
-      });
+        $(document).ready(function() {
+            $('.sidenav').sidenav();
+            moment().format();
+
+
+        });
     </script>
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
 
 
 </body>

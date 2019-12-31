@@ -15,25 +15,21 @@
 
         <nav>
             <div class="nav-wrapper">
-                <a href="#!" class="brand-logo">Box-Office Depot</a>
-                <ul class="right hide-on-med-and-down">
-                    <li>
-                        <!-- <form>
-                            <div class="input-field">
-                                <input id="search" type="search" required>
-                                <label class="label-icon" for="search"><i class="material-icons"></i>Search Movies</i></label>
-                            </div>
-                            <button id="search-submit-ID" class="btn waves-effect waves-light" type="submit" name="action">Submit
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </form> -->
-
-                    </li>
-                    <li><a href="FindTheaters.html"><i class="material-icons right">add_location</i>Find Theaters Near You</a></li>
-
-                </ul>
+              <a href="#!" class="brand-logo">Box-Office-Depot</a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="comingSoon.html">Coming Soon</a></li>
+                <li><a href="map.html">Theaters Near You</a></li>
+                
+              </ul>
             </div>
-        </nav>
+          </nav>
+          <ul class="sidenav" id="mobile-demo">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="comingSoon.html">Coming Soon</a></li>
+                <li><a href="map.html">Theaters Near You</a></li>
+          </ul>
 
         <div id="coming-soon-ID"></div>
 
@@ -41,6 +37,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="assets/js/script.js"></script>
         <script src="assets/js/comingSoon.js"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
+        <script>
+        $(document).ready(function(){
+        $('.sidenav').sidenav();
+        });
+        </script>
     </body>
 </html>

@@ -1,5 +1,14 @@
-/* Styling for the dynamically created "Now Playing" movie cards */
+/* Navbar logo styling */
+.brand-logo {
+    margin-left: 20px;
+}
 
+.subHeader {
+    font-family: 'Raleway', sans-serif;
+    color: #302f2f;
+}
+
+/* Styling for the dynamically created "Now Playing" movie cards */
 #now-playing-ID {
     text-align: center;
 }
@@ -14,10 +23,14 @@
     box-sizing: border-box;
     margin: 10px;
     top: 0;
+
+    /* Transition for a smooth hover effect */
     transition: top ease 0.5s;
 }
 
 .card:hover {
+
+    /* Card will move 6 pixels towards the top, on hover */
     top: -6px;
 }
 

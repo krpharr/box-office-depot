@@ -44,14 +44,15 @@ body {
 .movie-and-theaters-container {
     margin: 16px 0;
     padding: 16px;
-    border: 1px solid black;
+    border: 1px solid #090057;
 }
 
 .theaters {
     border: 1px solid lightgrey;
-    background-color: #FF8069;
+    background-color: #090057;
     margin: 8px 0;
     padding: 8px;
+    color: #ffa069;
 }
 
 .theatre-showtimes {
@@ -82,9 +83,11 @@ body {
 }
 
 .movie-and-theaters-container {
-    background-color: #090057;
+    background-color: #eae7ed;
 }
 
-.theatre-showtimes {
-    
+h2 {
+    color: #090057 !important;
 }
+
+/* .theatre-showtimes {} */

@@ -21,12 +21,14 @@ $(document).ready(function() {
         console.log(`More or less ${crd.accuracy} meters.`);
 
         queryZipCodeByLocation(crd);
+        $(".available-with-location").show();
+        $("#small-loader").hide();
     }
 
     function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
     }
-
+    $(".available-with-location").hide();
     navigator.geolocation.getCurrentPosition(success, error, options);
 });
 
@@ -71,6 +73,9 @@ function queryZipCodeByLocation(coords) {
 
             $("#zipcode-input-ID").val(zipcode);
 
+            // queary data and store in ls
+            moviesByZip(zipcode);
+
         }
 
     }).fail(function() {
@@ -92,7 +97,7 @@ function getMovie() {
         method: "GET"
     }).then(function(response) {
         console.log(response);
-        
+
         // Below will create a horizontal card
         // This card will display the movie image, title, release date, rated, plot, and Rotten Tomato score
         // This should be called in an "on click" event, when the user searches a movie
@@ -205,6 +210,7 @@ $("#btn-movies-by-zip-ID").on("click", function(event) {
     if (zipcode === "") {
         return;
     }
+
     // get checkbox elements
     let cbArray = $(this)[0].form.elements;
     // create array to hold selected movie titles
@@ -226,6 +232,8 @@ $("#btn-movies-by-zip-ID").on("click", function(event) {
         titleArray: selMoviesTitleArray
     };
     // save to local storage
+    localStorage.setItem("bod-movies-by-zip", zipcode);
     localStorage.setItem("bod-search-showtimes-zip", JSON.stringify(saveData));
-    window.location.href = "FindTheaters.html";
+    window.location.replace("FindTheaters.html");
+    // window.location.href = "FindTheaters.html";
 });

@@ -1,22 +1,23 @@
 const fullDaysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const api_key = "p9g59wgk4b3g7u3y8vrraxs4";
+const api_key = "jzp5d2j4p6udnznt7c3zebps";
 
 //cuso.tmsimg.com/assets/p14097646_p_v5_an.jpg?api_key=p9g59wgk4b3g7u3y8vrraxs4
 //cuso.tmsimg.com/assets/p14097646_p_v5_an.jpg?api_key=p9g59wgk4b3g7u3y8vrraxs4
 
-let lsData = JSON.parse(localStorage.getItem("bod-search-showtimes-zip"));
-console.log(lsData.zip, typeof lsData.zip);
-console.log("lsData", lsData);
+// let lsZip = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
+// let lsData = JSON.parse(localStorage.getItem("bod-search-showtimes-zip"));
+// console.log(lsZip.zip, typeof lsZip.zip);
+// console.log("lsData", lsZip);
 
 
-moviesByZip(lsData.zip);
+// moviesByZip(lsZip.zip);
 
 
 function moviesByZip(zipcode) {
     //
     // Query TMSAPI for all movie showings by zip code and write results to localStarage
     //
-    localStorage.setItem("bod-movies-by-zip", zipcode);
+    // localStorage.setItem("bod-movies-by-zip", zipcode);
     let day = moment().format("YYYY-MM-DD");
     let query = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${day}&zip=${zipcode}&api_key=${api_key}`;
     $.ajax({
@@ -58,7 +59,8 @@ function moviesByZip(zipcode) {
 }
 
 function getShowTimesFromLocalStorage() {
-    let ls = JSON.parse(localStorage.getItem(`bod-showtimes-${lsData.zip}`));
+    let zip = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
+    let ls = JSON.parse(localStorage.getItem(`bod-showtimes-${zip}`));
     return ls;
 }
 
@@ -66,7 +68,7 @@ function getMovieShowtimes(title) {
     //
     // search local storage by movie title ( call after moviesByZip() ) and return array of showtime info objects
     //
-    let zip = localStorage.getItem("bod-movies-by-zip");
+    let zip = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
     $(".zip").text(zip);
     let ls = JSON.parse(localStorage.getItem(`bod-showtimes-${zip}`));
     if (ls === null || ls.length < 1) {

@@ -10,7 +10,7 @@ function comingSoon() {
 
         // Declaring the link as a variable, to call in the for loop with the path
         // This is for pulling the movie poster
-        var link = " http://image.tmdb.org/t/p/w185/"; 
+        var link = " https://image.tmdb.org/t/p/w185/"; 
  
         $(".card").css("width", 200);
         $(".activator").attr("src", link + poster);

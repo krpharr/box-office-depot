@@ -15,47 +15,46 @@ $(document).ready(function() {
         // };
         ////////////
 
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-
+        // console.log('Your current position is:');
+        // console.log(`Latitude : ${crd.latitude}`);
+        // console.log(`Longitude: ${crd.longitude}`);
+        // console.log(`More or less ${crd.accuracy} meters.`);
         queryZipCodeByLocation(crd);
+        $(".available-with-location").show();
+        $("#small-loader").hide();
+        $("#select-movies-loader").hide();
+        $("#select-movies-form-ID").show();
     }
 
     function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
     }
 
+    $(".available-with-location").hide();
+    $("#select-movies-form-ID").hide();
     navigator.geolocation.getCurrentPosition(success, error, options);
 });
 
 function queryZipCodeByLocation(coords) {
-
     let str = coords.latitude.toFixed(2);
-
-    console.log("toFixed", str);
-
+    // console.log("toFixed", str);
     var queryURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude.toFixed(2)},${coords.longitude.toFixed(2)}&location_type=ROOFTOP&result_type=street_address&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
     $.ajax({
         url: queryURL,
         method: "GET",
     }).then(function(response) {
         // console.log("then", response);
-
         if (response.status === "ZERO_RESULTS") {
 
         } else {
             // console.log(response.results[0].formatted_address);
             // console.log(response.results[0].geometry.location);
-
             var location = {
                 address: response.results[0].formatted_address,
                 lat: response.results[0].geometry.location.lat,
                 lng: response.results[0].geometry.location.lng
             };
-            console.log(location)
-
+            // console.log(location)
             let acArray = response.results[0].address_components;
             // console.log("acArray", acArray);
             var zipcode;
@@ -64,19 +63,16 @@ function queryZipCodeByLocation(coords) {
                     zipcode = acArray[i].long_name;
                 }
             }
-            console.log(zipcode);
-
+            // console.log(zipcode);
             // save zip code to local storage
             localStorage.setItem("bod-movies-by-zip", JSON.stringify(zipcode));
-
             $("#zipcode-input-ID").val(zipcode);
-
+            // queary data and store in ls
+            moviesByZip(zipcode);
         }
-
     }).fail(function() {
         $('#modal1').modal('open');
     });
-
 }
 
 ////////////////////////////   This code needs to be attached, on click, when searching for a movie ////////// 
@@ -92,7 +88,7 @@ function getMovie() {
         method: "GET"
     }).then(function(response) {
         console.log(response);
-        
+
         // Below will create a horizontal card
         // This card will display the movie image, title, release date, rated, plot, and Rotten Tomato score
         // This should be called in an "on click" event, when the user searches a movie
@@ -205,6 +201,7 @@ $("#btn-movies-by-zip-ID").on("click", function(event) {
     if (zipcode === "") {
         return;
     }
+
     // get checkbox elements
     let cbArray = $(this)[0].form.elements;
     // create array to hold selected movie titles
@@ -226,6 +223,7 @@ $("#btn-movies-by-zip-ID").on("click", function(event) {
         titleArray: selMoviesTitleArray
     };
     // save to local storage
+    localStorage.setItem("bod-movies-by-zip", zipcode);
     localStorage.setItem("bod-search-showtimes-zip", JSON.stringify(saveData));
-    window.location.href = "FindTheaters.html";
+    window.location.replace("FindTheaters.html");
 });

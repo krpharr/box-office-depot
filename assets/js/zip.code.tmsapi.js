@@ -18,7 +18,7 @@ function moviesByZip(zipcode) {
     //
     localStorage.setItem("bod-movies-by-zip", zipcode);
     let day = moment().format("YYYY-MM-DD");
-    let query = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${day}&zip=${zipcode}&api_key=${api_key}`;
+    let query = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${day}&zip=${zipcode}&api_key=${api_key}`;
     $.ajax({
         url: query,
         method: "GET"
@@ -95,13 +95,13 @@ function sortMovieShowtimesByTheatre(movieShowtimesArray) {
     let id = showtimes[0].theatre.id;
     // console.log(movieShowtimesArray);
     // console.log(movieShowtimesArray[0].title);
-    // console.log(showtimes);
-    // console.log(id);
+    console.log(showtimes);
+    console.log(id);
     let movieByTheatre = [];
     let i = 0;
     let buff = [];
     showtimes.forEach(showtime => {
-        // console.log(showtime);
+        console.log(showtime);
         if (id === showtime.theatre.id) {
             buff.push(showtime);
         } else {
@@ -112,5 +112,8 @@ function sortMovieShowtimesByTheatre(movieShowtimesArray) {
             i += 1;
         }
     });
+    if (buff !== []) {
+        movieByTheatre.push(buff);
+    }
     return movieByTheatre;
 }

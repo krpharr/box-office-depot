@@ -27,6 +27,7 @@ $(document).ready(function() {
     }
 
     function error(err) {
+        // $('#modal1').modal('open');
         console.warn(`ERROR(${err.code}): ${err.message}`);
     }
 

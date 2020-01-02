@@ -120,7 +120,7 @@ function getBoxOffice() {
         console.log(response);
 
         // Declaring the image link as a variable.  To be combined with the poster path in for loop.
-        var link = " http://image.tmdb.org/t/p/w185/"; 
+        var link = " http://image.tmdb.org/t/p/w185/";
 
         $(".card").css("width", 200);
         $(".activator").attr("src", link + poster);

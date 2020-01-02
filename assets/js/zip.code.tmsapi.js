@@ -25,7 +25,7 @@ function moviesByZip(zipcode) {
         method: "GET"
     }).then(function(response) {
         // let movies = response;
-        console.log("movies", response);
+        // console.log("movies", response);
         // create array to hold movie info objects
         let movieShowTimes = [];
         //loop array
@@ -76,12 +76,12 @@ function getMovieShowtimes(title) {
         // ls.push(`${title} - not playing in zip code.`);
         return ls;
     }
-    console.log(zip, ls);
+    // console.log(zip, ls);
     let isPlaying = ls.showtimes.filter(movie => {
         return movie.title === title;
-        console.log(movie.title, title);
+        // console.log(movie.title, title);
     });
-    console.log(isPlaying);
+    // console.log(isPlaying);
     if (isPlaying.length < 1) {
         return [];
     }
@@ -97,13 +97,13 @@ function sortMovieShowtimesByTheatre(movieShowtimesArray) {
     let id = showtimes[0].theatre.id;
     // console.log(movieShowtimesArray);
     // console.log(movieShowtimesArray[0].title);
-    console.log(showtimes);
-    console.log(id);
+    // console.log(showtimes);
+    // console.log(id);
     let movieByTheatre = [];
     let i = 0;
     let buff = [];
     showtimes.forEach(showtime => {
-        console.log(showtime);
+        // console.log(showtime);
         if (id === showtime.theatre.id) {
             buff.push(showtime);
         } else {

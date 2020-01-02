@@ -42,16 +42,22 @@
     <div class="loader small-loader" id="small-loader"></div>
 
 
+    <div class="container">
 
-    <!--Where movies are displayed-->
-    <div id="now-playing-ID">
-        <h4 class="subHeader">Top Rated New Movies</h4>
+        <!--Where movies are displayed-->
+        <div id="now-playing-ID">
+            <h4 class="subHeader">Top Rated New Movies</h4>
+        </div>
+
+
+
     </div>
 
     <!-- movies by zip showtimes search  -->
     <div class="container" style="margin-top: 32px; border: 1px solid lightgrey;">
         <div class="row select-current-movies-container">
-            <form class="col s12">
+            <div class="loader" id="select-movies-loader"></div>
+            <form class="col s12" id="select-movies-form-ID">
                 <div class="row">
                     <div>Select one or more movies and enter zip code to search for showtimes. Selecting none searches for all movies.</div>
                     <div class="row">

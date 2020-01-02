@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/loader.css">
+
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 </head>
 
@@ -23,8 +25,8 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="comingSoon.html">Coming Soon</a></li>
-                <li><a href="nowplaying.html">Now Playing</a></li>
-                <li><a href="map.html">Theaters Near You</a></li>
+                <li class="available-with-location"><a href="nowplaying.html">Now Playing</a></li>
+                <li class="available-with-location"><a href="map.html">Theaters Near You</a></li class="available-with-location">
 
             </ul>
         </div>
@@ -36,15 +38,26 @@
         <li><a href="map.html">Theaters Near You</a></li>
     </ul>
 
-    <!--Where movies are displayed-->
-    <div id="now-playing-ID">
-        <h4 class="subHeader">Top Rated New Movies</h4>
+    <!-- loader for  location api's -->
+    <div class="loader small-loader" id="small-loader"></div>
+
+
+    <div class="container">
+
+        <!--Where movies are displayed-->
+        <div id="now-playing-ID">
+            <h4 class="subHeader">Top Rated New Movies</h4>
+        </div>
+
+
+
     </div>
 
     <!-- movies by zip showtimes search  -->
     <div class="container" style="margin-top: 32px; border: 1px solid lightgrey;">
         <div class="row select-current-movies-container">
-            <form class="col s12">
+            <div class="loader" id="select-movies-loader"></div>
+            <form class="col s12" id="select-movies-form-ID">
                 <div class="row">
                     <div>Select one or more movies and enter zip code to search for showtimes. Selecting none searches for all movies.</div>
                     <div class="row">
@@ -84,7 +97,10 @@
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA&libraries=places"></script>
+    <script src="assets/js/moment.js"></script>
+    <script src="assets/js/zip.code.tmsapi.js"></script>
     <script src="assets/js/script.js"></script>
+
     <script>
         $(document).ready(function() {
             $('.sidenav').sidenav();

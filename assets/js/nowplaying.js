@@ -1,15 +1,31 @@
+$(document).ready(function() {
+
+
+
+});
+
+
 let lsShowtimes = getShowTimesFromLocalStorage();
 
-// console.log("lsShowtimes", lsShowtimes);
+
+console.log(typeof lsShowtimes);
+if (lsShowtimes === null) {
+    let zip = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
+    if (zip === null) {
+        // todo:
+    }
+    moviesByZip(zip);
+    lsShowtimes = getShowTimesFromLocalStorage();
+}
+
+console.log("lsShowtimes", lsShowtimes);
 
 // console.log(lsShowtimes.showtimes.length);
 
 let movies = lsShowtimes.showtimes;
-console.log("movies", movies);
-// check to make sure each movie has showtimes - if not remove from array
-for (let i = 0; i < movies.length; i++) {
 
-}
+console.log("movies", movies);
+
 
 var movie;
 
@@ -55,7 +71,9 @@ function displayMovieInfo() {
     // console.log("movie", ...movie.topCast);
     var str = "";
     $("#movie-title-ID").text(movie.title);
-    $("#movie-rating-ID").text(movie.ratings[0].code);
+    if (movie.ratings) {
+        $("#movie-rating-ID").text(movie.ratings[0].code);
+    }
     movie.topCast.forEach(actor => {
         str += actor + "  ";
     });

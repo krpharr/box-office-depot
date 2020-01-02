@@ -78,7 +78,7 @@ function initMap() {
     // Perform a nearby search.
     service.nearbySearch({
             location: pyrmont,
-            radius: 8046,
+            radius: 20000,
             type: ['movie_theater']
         },
         function(results, status, pagination) {

@@ -80,7 +80,6 @@ function queryZipCodeByLocation(coords) {
 }
 
 ////////////////////////////   This code needs to be attached, on click, when searching for a movie ////////// 
-// Brian's code
 // Ajax function for OMDb call
 function getMovie() {
     var queryURL = "https://www.omdbapi.com/?t=avengers&apikey=e2a8b4bf&";
@@ -93,14 +92,25 @@ function getMovie() {
         method: "GET"
     }).then(function(response) {
         console.log(response);
-        // example response pulls for displaying info
-        // Alphabetization does matter!
+        
+        // Below will create a horizontal card
+        // This card will display the movie image, title, release date, rated, plot, and Rotten Tomato score
+        // This should be called in an "on click" event, when the user searches a movie
+        // We also need to figure out where we want this card to be displayed
+        // The card will also need some css styling
+        // I can also give these elements ID's for easier styling
+        var searchCard = $("<div class='card horizontal'>");
+        var searchImgContainer = $("<div class='card-image'>");
+        var searchImg = $("<img>").attr("src", response.Poster);
+        var searchContent = $("<div class='card-content'>");
 
-        // response.Title = movie title
-        // response.Rated = movie rating (example: pg-13, etc..)
-        // response.Released = movie release date
-        // response.Poster = movie poster/image
-        // response.Plot = movie plot snippit
+        searchContent.append($("<h5>").text(response.Title));
+        searchContent.append($("<p>").text(response.Released));
+        searchContent.append($("<p>").text(response.Rated));
+        searchContent.append($("<p>").text(response.Plot));
+
+
+        searchContent.append($("<p>").text(response.Ratings[1].Source + ": " + response.Ratings[1].Value));
     })
 }
 

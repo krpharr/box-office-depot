@@ -98,6 +98,7 @@ function getMovie() {
         // This should be called in an "on click" event, when the user searches a movie
         // We also need to figure out where we want this card to be displayed
         // The card will also need some css styling
+        // I can also give these elements ID's for easier styling
         var searchCard = $("<div class='card horizontal'>");
         var searchImgContainer = $("<div class='card-image'>");
         var searchImg = $("<img>").attr("src", response.Poster);

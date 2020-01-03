@@ -17,7 +17,7 @@
     text-align: center;
 }
 
-.card {
+.topCard {
     width: 200px;
     display: inline-block;
     box-sizing: border-box;
@@ -28,7 +28,7 @@
     transition: top ease 0.5s;
 }
 
-.card:hover {
+.topCard:hover {
 
     /* Card will move 6 pixels towards the top, on hover */
     top: -6px;
@@ -85,4 +85,21 @@
 .card-title {
     font-size: 13px !important;
     width: 100%;
+}
+
+#movieSearchForm {
+    margin-top: 40px;
+}
+
+#movieSearchBtn {
+    top: 22px;
+}
+
+#searchImg {
+    height: 250px;
+    width: auto;
+}
+
+.searchP {
+    margin: 5px 0 !important;
 }

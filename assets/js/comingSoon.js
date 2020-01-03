@@ -25,7 +25,7 @@ function comingSoon() {
             if (poster !== null) {
 
             // Creating a Materialize card for each movie in the ajax response
-            var card = $("<div class='card'>").attr("id", "card" + i);
+            var card = $("<div class='card topCard'>").attr("id", "card" + i);
             $("#coming-soon-ID").append(card);
 
             // Putting the image in the card, using Materialize classes

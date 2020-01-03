@@ -26,16 +26,51 @@
 // });
 
 // check to see if zip code is in local storage or set a default
+
 var ls = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
 if (!ls) {
-    ls = "23220";
-    localStorage.setItem("bod-movies-by-zip", ls);
+    openLocationModal();
+    ls = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
+    if (!ls) {
+        ls = "23220";
+        localStorage.setItem("bod-movies-by-zip", ls);
+        lsZipShowtimes();
+    }
+
+} else {
+    lsZipShowtimes();
 }
-var lsZip = ls;
-// check if local storage already has current date's showtimes for zip
-ls = JSON.parse(localStorage.getItem(`bod-showtimes-${lsZip}`));
-if (!ls || ls.date !== moment().format("YYYY-MM-DD")) {
-    moviesByZip(lsZip);
+
+function lsZipShowtimes() {
+    var lsZip = ls;
+    // check if local storage already has current date's showtimes for zip
+    ls = JSON.parse(localStorage.getItem(`bod-showtimes-${lsZip}`));
+    if (!ls || ls.date !== moment().format("YYYY-MM-DD")) {
+        moviesByZip(lsZip);
+    }
+}
+
+
+function openLocationModal() {
+    $('#enter-zip-modal').modal('open');
+}
+
+function enterZipModal() {
+    // https://gist.github.com/dryan/7486408#file-valid-zips-json
+
+    console.log($("#zipcode-input-ID").val());
+    let zip = $("#zipcode-input-ID").val();
+    console.log(typeof zip);
+    if (validZips.includes(zip)) {
+        console.log(zip + " is a valid zipcode");
+        localStorage.setItem("bod-movies-by-zip", zip);
+        moviesByZip(zip);
+    } else {
+        console.log(zip + " is not a valid zipcode");
+        openLocationModal();
+    }
+
+
 }
 
 

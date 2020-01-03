@@ -24,6 +24,7 @@
             <a href="index.html" class="brand-logo">Box-Office Depot</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
+                <li><a href="javascript:openLocationModal()"><i class="material-icons">add_location</i></a></li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="movieSearch.html">Search</a></li>
                 <li><a href="comingSoon.html">Coming Soon</a></li>
@@ -39,6 +40,7 @@
         <li><a href="comingSoon.html">Coming Soon</a></li>
         <li><a href="nowplaying.html">Now Playing</a></li>
         <li><a href="map.html">Find Theaters</a></li>
+        <li><a href="javascript:openLocationModal()"><i class="material-icons">add_location</i>Set Location</a></li>
     </ul>
 
     <!-- loader for  location api's -->
@@ -58,16 +60,16 @@
             <div class="loader" id="select-movies-loader"></div>
             <form class="col s12" id="select-movies-form-ID">
                 <div class="row">
-                    <div>Select one or more movies and enter zip code to search for showtimes. Selecting none searches for all movies.</div>
+                    <div>Select one or more movies to search for showtimes near you. Selecting none searches for all movies.</div>
                     <div class="row">
                         <div class="col">
                             <div id="select-current-movies-ID"></div>
                         </div>
                     </div>
-                    <div class="input-field col s6">
+                    <!-- <div class="input-field col s6">
                         <input placeholder="zip code" id="zipcode-input-ID" type="text">
                         <label for="zipcode-input-ID">Search movies showtimes by zip code.</label>
-                    </div>
+                    </div> -->
                 </div>
                 <button id="btn-movies-by-zip-ID" class="btn waves-effect waves-light" type="submit">Submit
                     <i class="material-icons right">send</i>
@@ -90,19 +92,39 @@
         </div>
     </div>
 
+    <div id="enter-zip-modal" class="modal" style="border-radius: 5px;">
+        <div class="modal-content">
+            <h4>Location</h4>
+            <p>Enter valid zip code.</p>
+            <div class="input-field col s6">
+                <input placeholder="zip code" id="zipcode-input-ID" type="text">
+                <label for="zipcode-input-ID">Search movies, theaters and showtimes by zip code.</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="javascript:enterZipModal()" class="modal-close waves-effect waves-green btn-flat">Enter</a>
+            <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </div>
+
+
+
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA&libraries=places"></script>
     <script src="assets/js/moment.js"></script>
+    <script src="assets/js/valid-zips.js"></script>
     <script src="assets/js/zip.code.tmsapi.js"></script>
-    <script src="assets/js/script.js"></script>
-
     <script>
         $(document).ready(function() {
             $('.sidenav').sidenav();
             $('.modal').modal();
         });
     </script>
+    <script src="assets/js/script.js"></script>
+
+
+
     <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 </body>

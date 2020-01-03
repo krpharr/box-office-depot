@@ -51,6 +51,7 @@ function moviesByZip(zipcode) {
         //build object to store to localStorage
         let showtimesByZip = {
             zip: zipcode,
+            date: day,
             showtimes: movieShowTimes
         };
         //write to storage 'bod-showtimes-ZIPCODE'

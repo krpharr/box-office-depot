@@ -1,18 +1,6 @@
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-
-// !!!! does not work if user has grammerly running in chrome !!!!
-
-
 $(document).ready(function() {
     var zipcode = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
-
-    console.log(zipcode);
-
     queryGeoLocation(zipcode);
-
 });
 
 var map;
@@ -28,29 +16,18 @@ function queryGeoLocation(query) {
         url: queryURL,
         method: "GET",
     }).then(function(response) {
-        console.log(response);
-
         let results = response;
-        console.log(response.results[0].formatted_address);
-        console.log(response.results[0].geometry.location);
-
         var location = {
             address: response.results[0].formatted_address,
             lat: response.results[0].geometry.location.lat,
             lng: response.results[0].geometry.location.lng
         };
-        console.log(location)
-
         localStorage.setItem("bod-geo-location", JSON.stringify(location));
-
         initMap();
-
     }).fail(function() {
-        alert("queryGeoLocation failed");
+        //todo: alert("queryGeoLocation failed");
     });
-
 }
-
 
 function initMap() {
     // Create the map.
@@ -64,11 +41,6 @@ function initMap() {
         center: pyrmont,
         zoom: 1
     });
-
-    // map.addListener('click', function(e) {
-    //     console.log(e);
-    // });
-
     // Create the places service.
     service = new google.maps.places.PlacesService(map);
     var getNextPage = null;
@@ -92,7 +64,6 @@ function initMap() {
             };
         }
     );
-
 }
 
 function createMarkers(places) {
@@ -162,7 +133,6 @@ function createMarkers(places) {
 }
 
 function createMarker(place) {
-    console.log("place", place);
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location

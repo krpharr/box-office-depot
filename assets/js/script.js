@@ -1,40 +1,78 @@
-$(document).ready(function() {
-    var options = {
-        enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 0
-    };
+// $(document).ready(function() {
+//     var options = {
+//         enableHighAccuracy: true,
+//         timeout: 10000,
+//         maximumAge: 0
+//     };
 
-    function success(pos) {
-        var crd = pos.coords;
+//     function success(pos) {
+//         var crd = pos.coords;
 
-        // test code //
-        // var crd = {
-        //     latitude: 40.7484405,
-        //     longitude: -73.9856644
-        // };
-        ////////////
+//         queryZipCodeByLocation(crd);
+//         $(".available-with-location").show();
+//         $("#small-loader").hide();
+//         $("#select-movies-loader").hide();
+//         $("#select-movies-form-ID").show();
+//     }
 
-        // console.log('Your current position is:');
-        // console.log(`Latitude : ${crd.latitude}`);
-        // console.log(`Longitude: ${crd.longitude}`);
-        // console.log(`More or less ${crd.accuracy} meters.`);
-        queryZipCodeByLocation(crd);
-        $(".available-with-location").show();
-        $("#small-loader").hide();
-        $("#select-movies-loader").hide();
-        $("#select-movies-form-ID").show();
+//     function error(err) {
+//         // $('#modal1').modal('open');
+//         console.warn(`ERROR(${err.code}): ${err.message}`);
+//     }
+
+//     $(".available-with-location").hide();
+//     $("#select-movies-form-ID").hide();
+//     navigator.geolocation.getCurrentPosition(success, error, options);
+// });
+
+// check to see if zip code is in local storage or set a default
+
+var ls = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
+if (!ls) {
+    openLocationModal();
+    ls = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
+    if (!ls) {
+        ls = "23220";
+        localStorage.setItem("bod-movies-by-zip", ls);
+        lsZipShowtimes();
     }
 
-    function error(err) {
-        // $('#modal1').modal('open');
-        console.warn(`ERROR(${err.code}): ${err.message}`);
+} else {
+    lsZipShowtimes();
+}
+
+function lsZipShowtimes() {
+    var lsZip = ls;
+    // check if local storage already has current date's showtimes for zip
+    ls = JSON.parse(localStorage.getItem(`bod-showtimes-${lsZip}`));
+    if (!ls || ls.date !== moment().format("YYYY-MM-DD")) {
+        moviesByZip(lsZip);
+    }
+}
+
+
+function openLocationModal() {
+    $('#enter-zip-modal').modal('open');
+}
+
+function enterZipModal() {
+    // https://gist.github.com/dryan/7486408#file-valid-zips-json
+
+    console.log($("#zipcode-input-ID").val());
+    let zip = $("#zipcode-input-ID").val();
+    console.log(typeof zip);
+    if (validZips.includes(zip)) {
+        console.log(zip + " is a valid zipcode");
+        localStorage.setItem("bod-movies-by-zip", zip);
+        moviesByZip(zip);
+    } else {
+        console.log(zip + " is not a valid zipcode");
+        openLocationModal();
     }
 
-    $(".available-with-location").hide();
-    $("#select-movies-form-ID").hide();
-    navigator.geolocation.getCurrentPosition(success, error, options);
-});
+
+}
+
 
 function queryZipCodeByLocation(coords) {
     let str = coords.latitude.toFixed(2);
@@ -138,7 +176,7 @@ function getBoxOffice() {
         // populate movie selector and find showtimes form
         //
         let mArray = response.results;
-        console.log(mArray);
+        // console.log(mArray);
         mArray.forEach(movie => {
             let div = $("<div>");
             let cb = $("<input  type='checkbox' class='filled-in'>");
@@ -159,7 +197,7 @@ getBoxOffice();
 
 $(document).ready(function() {
     let interval = setInterval(function() {
-        console.log(movieDBload);
+        // console.log(movieDBload);
         if (movieDBload) {
             clearInterval(interval);
             $("#top-rated-loader").hide();
@@ -174,11 +212,8 @@ $(document).ready(function() {
 //
 $("#btn-movies-by-zip-ID").on("click", function(event) {
     event.preventDefault();
-    // primitive validation
-    let zipcode = $("#zipcode-input-ID").val();
-    if (zipcode === "") {
-        return;
-    }
+
+    var zipcode = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
 
     // get checkbox elements
     let cbArray = $(this)[0].form.elements;
@@ -203,5 +238,6 @@ $("#btn-movies-by-zip-ID").on("click", function(event) {
     // save to local storage
     localStorage.setItem("bod-movies-by-zip", zipcode);
     localStorage.setItem("bod-search-showtimes-zip", JSON.stringify(saveData));
-    window.location.replace("FindTheaters.html");
+    // window.location.replace("FindTheaters.html");
+    window.location.href = "FindTheaters.html";
 });

@@ -145,6 +145,31 @@ main {
     background-color: #b71c1c;
 }
 
+#btn-movies-by-zip-ID {
+    background-color: #b71c1c;
+}
+
+#zipcode-input-ID {
+    color: white
+}
+
+#movieSearchBtn {
+    background-color: #b71c1c;
+}
+
+#searchedMovie {
+    color: white
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .brand-logo {
+        font-size: 21px !important;
+    }
+
+}
+
 
 
 /* .theatre-showtimes {} */

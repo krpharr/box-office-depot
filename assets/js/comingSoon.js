@@ -8,12 +8,6 @@ function comingSoon() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-<<<<<<< HEAD
-
-        console.log(response);
-=======
-        ajaxSuccess = true;
->>>>>>> master
 
         // Declaring the link as a variable, to call in the for loop with the path
         // This is for pulling the movie poster

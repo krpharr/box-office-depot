@@ -91,8 +91,6 @@ function getBoxOffice() {
     }).then(function(response) {
         movieDBload = true;
 
-        console.log(response);
-
         // Declaring the image link as a variable.  To be combined with the poster path in for loop.
         var link = " https://image.tmdb.org/t/p/w185/";
 

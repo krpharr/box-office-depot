@@ -19,6 +19,8 @@ var map;
 var service;
 var infowindow;
 var markers = [];
+var contentArray = [];
+var objArray = [];
 
 function queryGeoLocation(query) {
     var queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
@@ -174,6 +176,10 @@ function createMarker(place) {
                         <div><a href="${str}" target="_blank">Open in Google Maps!</a></div>`;
         infowindow.setContent(content);
         infowindow.open(map, this);
+        // contentArray.push(content);
+        // console.log("this", $(this));
+        // console.log("typeof this", typeof $(this));
+        // objArray.push(this);
     });
 }
 
@@ -181,4 +187,8 @@ function centerMapOnTheatre(index) {
     map.panTo(markers[index].getPosition());
     //zoom?
     map.setZoom(11);
+    // infowindow.close();
+    // infowindow.setContent(contentArray[index]);
+    // infowindow.open(map, objArray[index]);
+
 }

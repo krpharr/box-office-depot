@@ -6,12 +6,9 @@ $(document).ready(function() {
 var map;
 var service;
 var infowindow;
-<<<<<<< HEAD
-=======
 var markers = [];
 var contentArray = [];
 var objArray = [];
->>>>>>> master
 
 function queryGeoLocation(query) {
     var queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
@@ -103,13 +100,10 @@ function createMarkers(places) {
     }
     map.fitBounds(bounds);
     $(".theatre-name").on("click", function(event) {
-<<<<<<< HEAD
-=======
         // console.log(event.target);
         // console.log($(this).data("id"));
         // console.log("data-marker-index", $(this).data("marker-index"));
         var markerIndex = $(this).data("marker-index");
->>>>>>> master
         let query = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${$(this).data("id")}&fields=name,rating,formatted_phone_number&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
         var request = {
             placeId: $(this).data("id"),
@@ -120,9 +114,6 @@ function createMarkers(places) {
 
         function callback(place, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
-<<<<<<< HEAD
-                createMarker(place);
-=======
                 //createMarker(place);
                 // console.log(place);
                 //display place info in temp div or on map marker
@@ -136,7 +127,6 @@ function createMarkers(places) {
                 // $("#").text(place.viewport);
                 // $("#").text(place.url);
                 centerMapOnTheatre(markerIndex);
->>>>>>> master
             }
         }
     });

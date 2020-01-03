@@ -203,5 +203,6 @@ $("#btn-movies-by-zip-ID").on("click", function(event) {
     // save to local storage
     localStorage.setItem("bod-movies-by-zip", zipcode);
     localStorage.setItem("bod-search-showtimes-zip", JSON.stringify(saveData));
-    window.location.replace("FindTheaters.html");
+    // window.location.replace("FindTheaters.html");
+    window.location.href = "FindTheaters.html";
 });

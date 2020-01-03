@@ -161,6 +161,10 @@ main {
     color: white
 }
 
+#searchContent {
+    border: 3px solid lightgrey;
+}
+
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {

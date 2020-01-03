@@ -101,6 +101,8 @@ function displayMovieInfo() {
             let div = $("<div class='col s12 theaters'>");
             let h3 = $("<h3 style='width:100%'>").text(theatre[0].theatre.name);
             div.append(h3);
+            let a = $("<a>").attr("href","map.html").text("Find In Maps");
+                    div.append(a);
             let row = $("<div class='row theatre-showtimes'>");
             theatre.forEach(showtime => {
                 let showtime_div = $("<div class='center showtime'>");

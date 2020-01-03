@@ -109,7 +109,7 @@ function getBoxOffice() {
             var poster = response.results[i].poster_path
 
             // Creating a card for each movie in the response, using Materialize classes
-            var card = $("<div class='card'>").attr("id", "card" + i);
+            var card = $("<div class='card topCard'>").attr("id", "card" + i);
             $("#now-playing-ID").append(card);
 
             // Putting the image in the card, using Materialize classes

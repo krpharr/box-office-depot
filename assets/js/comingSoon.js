@@ -9,7 +9,6 @@ function comingSoon() {
         method: "GET"
     }).then(function(response) {
         ajaxSuccess = true;
-        console.log(response);
 
         // Declaring the link as a variable, to call in the for loop with the path
         // This is for pulling the movie poster
@@ -21,7 +20,6 @@ function comingSoon() {
         $(".card-title").css("width", 150);
 
         for (var i = 0; i < response.results.length; i++) {
-            console.log(response.results.length);
             var poster = response.results[i].poster_path
 
             // In cases where the poster path has a value of null, a card will no be created

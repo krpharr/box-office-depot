@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Box-Office Depot</title>
@@ -10,11 +10,30 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
-  </head>
+</head>
 
-  <body>
+<body>
 
     <nav>
+<<<<<<< HEAD
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">Box-Office-Depot</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="comingSoon.html">Coming Soon</a></li>
+                <li><a href="nowplaying.html">Now Playing</a></li>
+                <li><a href="map.html">Theaters Near You</a></li>
+
+            </ul>
+        </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="comingSoon.html">Coming Soon</a></li>
+        <li><a href="nowplaying.html">Now Playing</a></li>
+        <li><a href="map.html">Theaters Near You</a></li>
+=======
       <div class="nav-wrapper">
         <a href="index.html" class="brand-logo">Box-Office-Depot</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -33,21 +52,24 @@
       <li><a href="comingSoon.html">Coming Soon</a></li>
       <li><a href="nowplaying.html">Now Playing</a></li>
       <li><a href="map.html">Find Theaters</a></li>
+>>>>>>> master
     </ul>
 
-      <div id="coming-soon-ID">
+    <div class="loader" id="top-rated-loader"></div>
+    <div id="coming-soon-ID">
         <h4 class="subHeader">Coming Soon</h4>
-      </div>
+    </div>
 
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-      <script src="assets/js/script.js"></script>
-      <script src="assets/js/comingSoon.js"></script>
-      <!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
-      <script>
-      $(document).ready(function(){
-      $('.sidenav').sidenav();
-      });
-      </script>
-  </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/comingSoon.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
+    <script>
+        $(document).ready(function() {
+            $('.sidenav').sidenav();
+        });
+    </script>
+</body>
+
 </html>

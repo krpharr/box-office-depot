@@ -78,6 +78,7 @@ function populateMovieListings(mArray) {
 
             theaters.forEach(theatre => {
                 if (theatre.length > 0) {
+                    console.log("theatre", theatre);
                     let div = $("<div class='col s12 theaters'>");
                     let h3 = $("<h3 style='width:100%'>").text(theatre[0].theatre.name);
                     div.append(h3);

@@ -79,6 +79,8 @@ function queryZipCodeByLocation(coords) {
 
 // Ajax function for Now Playing movies call
 // Calls current "Now Playing" movies, without the need of a search input value
+var movieDBload = false;
+
 function getBoxOffice() {
 
     var queryURL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a5366a149888ef9fe65c9fedceb22b79&language=en-US&page=1";
@@ -87,6 +89,8 @@ function getBoxOffice() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
+        movieDBload = true;
+
         console.log(response);
 
         // Declaring the image link as a variable.  To be combined with the poster path in for loop.
@@ -152,7 +156,19 @@ function getBoxOffice() {
     })
 }
 
+$("#now-playing-ID").hide();
 getBoxOffice();
+
+$(document).ready(function() {
+    let interval = setInterval(function() {
+        console.log(movieDBload);
+        if (movieDBload) {
+            clearInterval(interval);
+            $("#top-rated-loader").hide();
+            $("#now-playing-ID").show();
+        }
+    }, 10);
+});
 
 
 ////////////////////////////////

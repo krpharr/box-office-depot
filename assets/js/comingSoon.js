@@ -1,3 +1,5 @@
+var ajaxSuccess = false;
+
 function comingSoon() {
 
     var queryURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=a5366a149888ef9fe65c9fedceb22b79&region=US";
@@ -6,12 +8,13 @@ function comingSoon() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
+        ajaxSuccess = true;
         console.log(response);
 
         // Declaring the link as a variable, to call in the for loop with the path
         // This is for pulling the movie poster
-        var link = " https://image.tmdb.org/t/p/w185/"; 
- 
+        var link = " http://image.tmdb.org/t/p/w185/";
+
         $(".card").css("width", 200);
         $(".activator").attr("src", link + poster);
         $(".activator").css("width", 200);
@@ -55,4 +58,16 @@ function comingSoon() {
     })
 }
 
+$("#coming-soon-ID").hide();
 comingSoon();
+
+$(document).ready(function() {
+    let interval = setInterval(function() {
+        console.log(ajaxSuccess);
+        if (ajaxSuccess) {
+            clearInterval(interval);
+            $("#top-rated-loader").hide();
+            $("#coming-soon-ID").show();
+        }
+    }, 10);
+});

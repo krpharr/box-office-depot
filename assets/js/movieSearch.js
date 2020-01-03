@@ -13,7 +13,7 @@ function getMovie() {
 
         // Below will create a horizontal card
         // This card will display the movie image, title, release date, rated, plot, Rotten Tomato score, and Box Office data
-        var searchCard = $("<div class='card horizontal'>");
+        var searchCard = $("<div class='card horizontal' id='searchCard-ID'>");
         var searchImgContainer = $("<div class='card-image'>");
         var searchImg = $("<img id='searchImg'>").attr("src", response.Poster);
         var searchContent = $("<div class='card-content' id='searchContent'>");

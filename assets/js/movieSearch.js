@@ -1,10 +1,14 @@
 ////////////////////////////   This code needs to be attached, on click, when searching for a movie ////////// 
 // Ajax function for OMDb call
 function getMovie() {
-    var queryURL = "https://www.omdbapi.com/?t=avengers&apikey=e2a8b4bf&";
+    event.preventDefault();
+    // var queryURL = "https://www.omdbapi.com/?t=avengers&apikey=e2a8b4bf&";
     // Declaring the url, depending on the title search input
     // placeHolder being = input value
-    // var queryURL = "https://www.omdbapi.com/?t=" + placeHolder + "&apikey=e2a8b4bf&";
+    var searchedMovie = $("#searchedMovie").val();
+    console.log("-------");
+    console.log(searchedMovie);
+    var queryURL = "https://www.omdbapi.com/?t=" + searchedMovie + "&apikey=e2a8b4bf&";
 
     $.ajax({
         url: queryURL,
@@ -20,17 +24,26 @@ function getMovie() {
         // I can also give these elements ID's for easier styling
         var searchCard = $("<div class='card horizontal'>");
         var searchImgContainer = $("<div class='card-image'>");
-        var searchImg = $("<img>").attr("src", response.Poster);
-        var searchContent = $("<div class='card-content'>");
+        var searchImg = $("<img id='searchImg'>").attr("src", response.Poster);
+        var searchContent = $("<div class='card-content' id='searchContent'>");
 
-        searchContent.append($("<h5>").text(response.Title));
-        searchContent.append($("<p>").text(response.Released));
-        searchContent.append($("<p>").text(response.Rated));
-        searchContent.append($("<p>").text(response.Plot));
+        $(".movieContainer").append(searchCard);
+        searchCard.append(searchImgContainer);
+        searchImgContainer.append(searchImg);
+        searchCard.append(searchContent);
+
+        searchContent.append($("<h4>").text(response.Title));
+        searchContent.append($("<p class='searchP'>").text("Released: " + response.Released));
+        searchContent.append($("<p class='searchP'>").text(response.Rated));
+        searchContent.append($("<p class='searchP'>").text(response.Plot));
+        searchContent.append($("<p class='searchP'>").text("Box Office: " + response.BoxOffice));
 
 
         searchContent.append($("<p>").text(response.Ratings[1].Source + ": " + response.Ratings[1].Value));
     })
 }
 
-// getMovie();
+$("#movieSearchBtn").on("click", function() {
+    $(".movieContainer").empty();
+    getMovie();
+})

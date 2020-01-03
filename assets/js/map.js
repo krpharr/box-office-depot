@@ -4,11 +4,16 @@
 
 
 // !!!! does not work if user has grammerly running in chrome !!!!
-var zipcode = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
 
-console.log(zipcode);
 
-queryGeoLocation(zipcode);
+$(document).ready(function() {
+    var zipcode = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
+
+    console.log(zipcode);
+
+    queryGeoLocation(zipcode);
+
+});
 
 var map;
 var service;
@@ -35,6 +40,8 @@ function queryGeoLocation(query) {
         console.log(location)
 
         localStorage.setItem("bod-geo-location", JSON.stringify(location));
+
+        initMap();
 
     }).fail(function() {
         alert("queryGeoLocation failed");
@@ -71,7 +78,7 @@ function initMap() {
     // Perform a nearby search.
     service.nearbySearch({
             location: pyrmont,
-            radius: 8046,
+            radius: 20000,
             type: ['movie_theater']
         },
         function(results, status, pagination) {
@@ -187,12 +194,3 @@ function createMarker(place) {
         infowindow.open(map, this);
     });
 }
-
-$("img").on("click", function(event) {
-    console.log(event);
-});
-
-
-$(document).ready(function() {
-
-});

@@ -8,9 +8,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/loader.css">
-    <title>Box-Office Depot</title>
-
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <title>Box-Office Depot - Now Playing</title>
 </head>
 
 <body>
@@ -21,7 +20,6 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="movieSearch.html">Search</a></li>
                 <li><a href="comingSoon.html">Coming Soon</a></li>
                 <li><a href="nowplaying.html">Now Playing</a></li>
                 <li><a href="map.html">Theaters Near You</a></li>
@@ -31,40 +29,45 @@
     </nav>
     <ul class="sidenav" id="mobile-demo">
         <li><a href="index.html">Home</a></li>
+        <li><a href="movieSearch.html">Search</a></li>
         <li><a href="comingSoon.html">Coming Soon</a></li>
         <li><a href="nowplaying.html">Now Playing</a></li>
         <li><a href="map.html">Theaters Near You</a></li>
     </ul>
 
-
-    <!-- maps zip search  -->
-    <div class="container">
-        <div class="loader" id="loader"></div>
-        <div id="placeholder-info-ID"></div>
-        <div class="movie-and-theaters-container" id="not-playing-in-zip-ID" style="display: none;">
-            <h4><span>No showtimes in&nbsp;</span><span class="zip"></span><span>&nbsp;for:</span></h4>
+    <main>
+        <!-- <div id="loading-ID">Loading...</div> -->
+        <div class="carousel" id="now-playing-carousel-ID">
         </div>
+        <div class="container">
+            <div class="row" id="movie-info-ID">
+                <h4 class="center" id="movie-title-ID"></h4>
+                <div id="movie-rating-ID"></div>
+                <div id="movie-top-cast-ID"></div>
+                <div id="movie-directors-ID"></div>
+                <div id="movie-shortDescription-ID"></div>
+                <div id="movie-longDescription-ID"></div>
+                <div id="movie-releaseDate-genres-ID"></div>
+            </div>
+            <div class="row" id="movie-theater-showtimes-ID"></div>
 
+        </div>
+    </main>
 
+    <!-- display movies and theaters -->
+    <div id="now-playing-container-ID"></div>
 
-    </div>
-
-    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="assets/js/moment.js"></script>
     <script src="assets/js/zip.code.tmsapi.js"></script>
-    <script src="assets/js/findtheaters.js"></script>
+    <script src="assets/js/nowplaying.js"></script>
     <script>
         $(document).ready(function() {
             $('.sidenav').sidenav();
+            // $('.carousel').carousel();
             moment().format();
-            $('.tooltipped').tooltip();
-
         });
     </script>
-    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-
 
 </body>
 

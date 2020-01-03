@@ -82,6 +82,11 @@ function populateMovieListings(mArray) {
                     let h3 = $("<h3 style='width:100%'>").text(theatre[0].theatre.name);
                     div.append(h3);
                     let row = $("<div class='row theatre-showtimes'>");
+
+                    let a = $("<a>").attr("href","map.html").text("Find In Maps");
+                    div.append(a);
+
+
                     theatre.forEach(showtime => {
                         let showtime_div = $("<div class='center showtime tooltipped' data-position='bottom' data-tooltip='I am a tooltip'>");
                         var fandango;
@@ -96,6 +101,7 @@ function populateMovieListings(mArray) {
                     });
                     div.append(row);
                     movieInfo.append(div);
+                    // console.log(theatre)
 
                 }
 

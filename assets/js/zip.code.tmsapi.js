@@ -1,18 +1,9 @@
 const fullDaysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-// const api_key = "jzp5d2j4p6udnznt7c3zebps";
-const api_key = "p9g59wgk4b3g7u3y8vrraxs4";
+const api_key = "jzp5d2j4p6udnznt7c3zebps";
+//const api_key = "p9g59wgk4b3g7u3y8vrraxs4";
 
 //cuso.tmsimg.com/assets/p14097646_p_v5_an.jpg?api_key=p9g59wgk4b3g7u3y8vrraxs4
 //cuso.tmsimg.com/assets/p14097646_p_v5_an.jpg?api_key=p9g59wgk4b3g7u3y8vrraxs4
-
-// let lsZip = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
-// let lsData = JSON.parse(localStorage.getItem("bod-search-showtimes-zip"));
-// console.log(lsZip.zip, typeof lsZip.zip);
-// console.log("lsData", lsZip);
-
-
-// moviesByZip(lsZip.zip);
-
 
 function moviesByZip(zipcode) {
     //
@@ -51,7 +42,6 @@ function moviesByZip(zipcode) {
         //build object to store to localStorage
         let showtimesByZip = {
             zip: zipcode,
-            date: day,
             showtimes: movieShowTimes
         };
         //write to storage 'bod-showtimes-ZIPCODE'

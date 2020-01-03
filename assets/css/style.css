@@ -1,4 +1,5 @@
 /* Navbar logo styling */
+
 .brand-logo {
     margin-left: 20px;
 }
@@ -6,7 +7,6 @@
 .nav-wrapper {
     background-color: #b71c1c;
 }
-
 
 .subHeader {
     font-family: 'Gothic A1', sans-serif;
@@ -16,7 +16,6 @@
 body {
     font-family: 'Gothic A1', sans-serif;
     background-color: black;
-    
 }
 
 #now-playing-ID {
@@ -33,14 +32,11 @@ body {
     box-sizing: border-box;
     margin: 10px;
     top: 0;
-
     /* Transition for a smooth hover effect */
     transition: top ease 0.5s;
-    
 }
 
 .topCard:hover {
-
     /* Card will move 6 pixels towards the top, on hover */
     top: -6px;
 }
@@ -150,7 +146,7 @@ main {
 }
 
 #zipcode-input-ID {
-    color: white
+    color: black
 }
 
 #movieSearchBtn {
@@ -168,13 +164,12 @@ main {
 
 
 /* Extra small devices (phones, 600px and down) */
+
 @media only screen and (max-width: 600px) {
     .brand-logo {
         font-size: 21px !important;
     }
-
 }
-
 
 
 /* .theatre-showtimes {} */

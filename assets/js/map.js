@@ -6,6 +6,12 @@ $(document).ready(function() {
 var map;
 var service;
 var infowindow;
+<<<<<<< HEAD
+=======
+var markers = [];
+var contentArray = [];
+var objArray = [];
+>>>>>>> master
 
 function queryGeoLocation(query) {
     var queryURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
@@ -89,6 +95,7 @@ function createMarkers(places) {
         // create div with each place data
         var li = document.createElement('li');
         li.setAttribute("data-id", theatre.place_id);
+        li.setAttribute("data-marker-index", i);
         li.setAttribute("class", "theatre-name");
         li.textContent = place.name;
         placesList.appendChild(li);
@@ -96,6 +103,13 @@ function createMarkers(places) {
     }
     map.fitBounds(bounds);
     $(".theatre-name").on("click", function(event) {
+<<<<<<< HEAD
+=======
+        // console.log(event.target);
+        // console.log($(this).data("id"));
+        // console.log("data-marker-index", $(this).data("marker-index"));
+        var markerIndex = $(this).data("marker-index");
+>>>>>>> master
         let query = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${$(this).data("id")}&fields=name,rating,formatted_phone_number&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
         var request = {
             placeId: $(this).data("id"),
@@ -106,7 +120,23 @@ function createMarkers(places) {
 
         function callback(place, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
+<<<<<<< HEAD
                 createMarker(place);
+=======
+                //createMarker(place);
+                // console.log(place);
+                //display place info in temp div or on map marker
+                $("#theatre-phone-ID").text(place.formatted_phone_number);
+                $("#theatre-name-ID").text(place.name);
+                $("#theatre-vicinity-ID").text(place.vicinity);
+                let a = $("<a>").attr("href", place.website).attr("target", "_blank").text("Website");
+                $("#theatre-website-ID").empty().append(a);
+                // $("#").text(place.geometry.location.lat);
+                // $("#").text(place.geometry.location.lng);
+                // $("#").text(place.viewport);
+                // $("#").text(place.url);
+                centerMapOnTheatre(markerIndex);
+>>>>>>> master
             }
         }
     });
@@ -117,6 +147,7 @@ function createMarker(place) {
         map: map,
         position: place.geometry.location
     });
+    markers.push(marker);
     var str = "https://www.google.com/maps/place/";
     str += place.vicinity.replace(" ", "+");
     google.maps.event.addListener(marker, 'click', function() {
@@ -125,5 +156,19 @@ function createMarker(place) {
                         <div><a href="${str}" target="_blank">Open in Google Maps!</a></div>`;
         infowindow.setContent(content);
         infowindow.open(map, this);
+        // contentArray.push(content);
+        // console.log("this", $(this));
+        // console.log("typeof this", typeof $(this));
+        // objArray.push(this);
     });
+}
+
+function centerMapOnTheatre(index) {
+    map.panTo(markers[index].getPosition());
+    //zoom?
+    map.setZoom(11);
+    // infowindow.close();
+    // infowindow.setContent(contentArray[index]);
+    // infowindow.open(map, objArray[index]);
+
 }

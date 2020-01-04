@@ -35,6 +35,10 @@ Once the page of theaters displays, the user can click on movie times and be dir
 
 ![movieTheaterSearchSnip](https://user-images.githubusercontent.com/43326943/71755561-240cb100-2e59-11ea-93d1-9ff8ea1ad0ef.PNG)  
 
+Below, shows an example of some theater show times, where each show time is a clickable button to be directed to the fandango website.  
+
+![theaterShowTimesSnip](https://user-images.githubusercontent.com/43326943/71757044-004d6900-2e61-11ea-9c58-aab2cf99eb8e.PNG)  
+
 Below, this is where the user can search for a movie, and be displayed.  
 This information includes; the title, release date, rated, short description, Box Office data, and Rotten Tomatoes score.  
 

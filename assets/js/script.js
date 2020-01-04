@@ -27,7 +27,7 @@
 // check to see if zip code is in local storage or set a default
 var ls = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
 if (!ls) {
-    openLocationModal();
+    // openLocationModal();
     ls = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
     if (!ls) {
         ls = "23220";

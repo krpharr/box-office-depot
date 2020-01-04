@@ -2,9 +2,6 @@ const fullDaysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", 
 const api_key = "jzp5d2j4p6udnznt7c3zebps";
 //const api_key = "p9g59wgk4b3g7u3y8vrraxs4";
 
-//cuso.tmsimg.com/assets/p14097646_p_v5_an.jpg?api_key=p9g59wgk4b3g7u3y8vrraxs4
-//cuso.tmsimg.com/assets/p14097646_p_v5_an.jpg?api_key=p9g59wgk4b3g7u3y8vrraxs4
-
 function moviesByZip(zipcode) {
     //
     // Query TMSAPI for all movie showings by zip code and write results to localStarage
@@ -46,7 +43,6 @@ function moviesByZip(zipcode) {
         };
         //write to storage 'bod-showtimes-ZIPCODE'
         localStorage.setItem(`bod-showtimes-${zipcode}`, JSON.stringify(showtimesByZip));
-
     });
 }
 
@@ -87,10 +83,6 @@ function sortMovieShowtimesByTheatre(movieShowtimesArray) {
     //
     let showtimes = movieShowtimesArray[0].showtimes;
     let id = showtimes[0].theatre.id;
-    // console.log(movieShowtimesArray);
-    // console.log(movieShowtimesArray[0].title);
-    // console.log(showtimes);
-    // console.log(id);
     let movieByTheatre = [];
     let i = 0;
     let buff = [];

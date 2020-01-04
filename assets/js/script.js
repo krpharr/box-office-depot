@@ -24,9 +24,7 @@
 //     $("#select-movies-form-ID").hide();
 //     navigator.geolocation.getCurrentPosition(success, error, options);
 // });
-
 // check to see if zip code is in local storage or set a default
-
 var ls = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
 if (!ls) {
     openLocationModal();
@@ -57,52 +55,37 @@ function openLocationModal() {
 
 function enterZipModal() {
     // https://gist.github.com/dryan/7486408#file-valid-zips-json
-
-    console.log($("#zipcode-input-ID").val());
     let zip = $("#zipcode-input-ID").val();
-    console.log(typeof zip);
     if (validZips.includes(zip)) {
-        console.log(zip + " is a valid zipcode");
         localStorage.setItem("bod-movies-by-zip", zip);
         moviesByZip(zip);
     } else {
-        console.log(zip + " is not a valid zipcode");
         openLocationModal();
     }
-
-
 }
-
 
 function queryZipCodeByLocation(coords) {
     let str = coords.latitude.toFixed(2);
-    // console.log("toFixed", str);
     var queryURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude.toFixed(2)},${coords.longitude.toFixed(2)}&location_type=ROOFTOP&result_type=street_address&key=AIzaSyAD8wycqgshyqwS8pWhA1GF8_7XoJPR8xA`;
     $.ajax({
         url: queryURL,
         method: "GET",
     }).then(function(response) {
-        // console.log("then", response);
         if (response.status === "ZERO_RESULTS") {
 
         } else {
-            // console.log(response.results[0].formatted_address);
-            // console.log(response.results[0].geometry.location);
             var location = {
                 address: response.results[0].formatted_address,
                 lat: response.results[0].geometry.location.lat,
                 lng: response.results[0].geometry.location.lng
             };
-            // console.log(location)
             let acArray = response.results[0].address_components;
-            // console.log("acArray", acArray);
             var zipcode;
             for (let i = 0; i < acArray.length; i++) {
                 if (acArray[i].types[0] === "postal_code") {
                     zipcode = acArray[i].long_name;
                 }
             }
-            // console.log(zipcode);
             // save zip code to local storage
             localStorage.setItem("bod-movies-by-zip", JSON.stringify(zipcode));
             $("#zipcode-input-ID").val(zipcode);
@@ -113,54 +96,41 @@ function queryZipCodeByLocation(coords) {
         $('#modal1').modal('open');
     });
 }
-
-
 // Ajax function for Now Playing movies call
 // Calls current "Now Playing" movies, without the need of a search input value
 var movieDBload = false;
 
 function getBoxOffice() {
-
     var queryURL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a5366a149888ef9fe65c9fedceb22b79&language=en-US&page=1";
-
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response) {
         movieDBload = true;
-
         // Declaring the image link as a variable.  To be combined with the poster path in for loop.
         var link = " https://image.tmdb.org/t/p/w185/";
-
         $(".card").css("width", 200);
         $(".activator").attr("src", link + poster);
         $(".activator").css("width", 200);
-
         $(".card-title").css("width", 150);
-
         // For loop to create a movie card for each movie in the call response
         for (var i = 0; i < response.results.length; i++) {
-
             // Path for the poster to be combined with the link
             var poster = response.results[i].poster_path
-
-            // Creating a card for each movie in the response, using Materialize classes
+                // Creating a card for each movie in the response, using Materialize classes
             var card = $("<div class='card topCard'>").attr("id", "card" + i);
             $("#now-playing-ID").append(card);
-
             // Putting the image in the card, using Materialize classes
             var cardImageContainer = $("<div class='card-image waves-effect waves-block waves-light'>");
             var cardImage = $("<img class='activator'>").attr("src", link + poster).attr("id", "img" + i);
             cardImageContainer.append(cardImage);
             card.append(cardImageContainer);
-
             // Putting the movie title in the card, using Materialize classes
             var cardContent = $("<div class='card-content'>");
             card.append(cardContent);
             var cardTitle = $("<span>").text(response.results[i].title);
             cardTitle.addClass("card-title activator grey-text text-darken-4");
             cardContent.append(cardTitle);
-
             // Creating the "reveal" on click button, to display movie synopsis
             var cardReveal = $("<div class='card-reveal'>").css("style", "display: block");
             card.append(cardReveal);
@@ -176,7 +146,6 @@ function getBoxOffice() {
         // populate movie selector and find showtimes form
         //
         let mArray = response.results;
-        // console.log(mArray);
         mArray.forEach(movie => {
             let div = $("<div>");
             let cb = $("<input  type='checkbox' class='filled-in'>");
@@ -197,7 +166,6 @@ getBoxOffice();
 
 $(document).ready(function() {
     let interval = setInterval(function() {
-        // console.log(movieDBload);
         if (movieDBload) {
             clearInterval(interval);
             $("#top-rated-loader").hide();
@@ -206,15 +174,12 @@ $(document).ready(function() {
     }, 10);
 });
 
-
 ////////////////////////////////
 //  movies by zip showtimes search button event handler
 //
 $("#btn-movies-by-zip-ID").on("click", function(event) {
     event.preventDefault();
-
     var zipcode = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
-
     // get checkbox elements
     let cbArray = $(this)[0].form.elements;
     // create array to hold selected movie titles

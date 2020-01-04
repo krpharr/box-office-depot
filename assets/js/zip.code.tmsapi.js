@@ -1,5 +1,6 @@
 const fullDaysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const api_key = "jzp5d2j4p6udnznt7c3zebps";
+const api_key = "awz432na4ksp6amr5xe8bjhq";
+// const api_key = "jzp5d2j4p6udnznt7c3zebps";
 //const api_key = "p9g59wgk4b3g7u3y8vrraxs4";
 
 function moviesByZip(zipcode) {

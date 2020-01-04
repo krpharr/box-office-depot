@@ -30,7 +30,7 @@ if (!ls) {
     // openLocationModal();
     ls = JSON.parse(localStorage.getItem("bod-movies-by-zip"));
     if (!ls) {
-        ls = "23220";
+        ls = "23228";
         localStorage.setItem("bod-movies-by-zip", ls);
         lsZipShowtimes();
     }
